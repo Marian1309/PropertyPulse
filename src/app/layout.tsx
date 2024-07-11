@@ -9,10 +9,11 @@ const figtree = Figtree({ subsets: ['latin'], weight: ['400'] });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s • Next.js 14',
-    default: 'Next.js 14'
+    template: '%s • Fint The Perfect Rental',
+    default: 'Property Pulse'
   },
-  description: 'Next.js 14 Starter'
+  description: 'Find your dream rental property',
+  keywords: ['rental, find rentals, find properties']
 };
 
 const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
