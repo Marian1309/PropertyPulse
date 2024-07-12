@@ -1,7 +1,15 @@
 import type { FC } from 'react';
 
+import { Hero } from '@/components/hero';
+import InfoBoxes from '@/components/info-boxes';
+
 const RootPage: FC = () => {
-  return <h1 className="h-adaptive text-xl flex-center">Starter</h1>;
+  return (
+    <>
+      <Hero />
+      <InfoBoxes />
+    </>
+  );
 };
 
 export default RootPage;

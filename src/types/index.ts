@@ -5,3 +5,7 @@ export type Link = {
   label: 'Home' | 'Properties' | 'Add Property';
   pathname: Pathname;
 };
+
+export type PropertType = {
+  label: string;
+};
