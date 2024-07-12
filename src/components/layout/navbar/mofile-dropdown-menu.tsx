@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import type { Pathname } from '@/types';
 
-import { GoogleButton } from '../ui';
+import { GoogleButton } from '@/components/ui';
 
 import LinkList from './link-list';
 

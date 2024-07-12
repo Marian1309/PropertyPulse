@@ -18,7 +18,7 @@ const LinkList: FC<Props> = ({ pathname, isLoggedIn }) => {
     <>
       {LINKS.filter((link) => {
         if (!isLoggedIn && link.pathname === '/properties/add') {
-          return;
+          return null;
         }
 
         return link;

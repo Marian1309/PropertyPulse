@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 import type { Pathname } from '@/types';
 
-import { GoogleButton } from '../ui';
+import { GoogleButton } from '@/components/ui';
 
 import MainMenu from './main-menu';
 import Messages from './messages';
