@@ -18,11 +18,12 @@ const prettierConfig = {
 
     '<THIRD_PARTY_MODULES>',
 
+    '^@/assets/(.*)$',
     '^@/lib',
     '^@/components/(.*)$',
 
-    '^[../]',
-    '^[./]'
+    '^../',
+    '^./'
   ],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,

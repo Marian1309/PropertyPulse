@@ -5,6 +5,8 @@ import { Figtree } from 'next/font/google';
 
 import '@/assets/styles/globals.scss';
 
+import { Navbar } from '@/components/navbar';
+
 const figtree = Figtree({ subsets: ['latin'], weight: ['400'] });
 
 export const metadata: Metadata = {
@@ -19,7 +21,10 @@ export const metadata: Metadata = {
 const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
-      <body className={figtree.className}>{children}</body>
+      <body className={figtree.className}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 };
