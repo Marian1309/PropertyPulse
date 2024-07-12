@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import Link from 'next/link';
 
-import ICONS from '../icons';
+import ICONS from '@/components/icons';
 
 const Messages: FC = () => {
   return (

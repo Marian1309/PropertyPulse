@@ -1,4 +1,4 @@
-import type { Link, PropertType } from '@/types';
+import type { Link, PropertyType } from '@/types';
 
 export const LINKS: Link[] = [
   { id: 1, label: 'Home', pathname: '/' },
@@ -6,7 +6,7 @@ export const LINKS: Link[] = [
   { id: 3, label: 'Add Property', pathname: '/properties/add' }
 ];
 
-export const PROPERTY_TYPE_OPTIONS: PropertType[] = [
+export const PROPERTY_TYPE_OPTIONS: PropertyType[] = [
   { label: 'All' },
   { label: 'Apartment' },
   { label: 'Studio' },

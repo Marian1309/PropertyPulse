@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import PROPERTIES from '@/constants/properties.json';
 
-import PropertyCard from '@/components/property-card';
+import PropertyCard from '@/components/ui/property-card';
 
 const PropertiesPage: FC = () => {
   return (

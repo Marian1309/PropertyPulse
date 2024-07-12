@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import ICONS from '../icons';
+import ICONS from '@/components/icons';
 
 type Props = {
   toggleIsMobileMenuOpen: () => void;

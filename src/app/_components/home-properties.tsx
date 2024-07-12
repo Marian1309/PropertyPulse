@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import PROPERTIES from '@/constants/properties.json';
 
-import PropertyCard from './property-card';
+import { PropertyCard } from '../../components/ui';
 
 const HomeProperties: FC = () => {
   const recentProperties = PROPERTIES.sort(
@@ -15,7 +15,7 @@ const HomeProperties: FC = () => {
     <>
       <section className="px-4 py-6">
         <div className="container-xl m-auto lg:container">
-          <h2 className="mb-6 text-center text-3xl font-bold text-blue-500">
+          <h2 className="mb-8 text-center text-3xl font-bold text-blue-500">
             Recent Properties
           </h2>
 

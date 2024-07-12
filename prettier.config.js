@@ -21,8 +21,11 @@ const prettierConfig = {
     '^@/types',
 
     '^@/assets/(.*)$',
+
     '^@/constants',
     '^@/lib',
+
+    '^./_components',
     '^@/components/(.*)$',
 
     '^../',

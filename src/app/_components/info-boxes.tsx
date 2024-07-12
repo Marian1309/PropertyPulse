@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { InfoBox } from './ui';
+import { InfoBox } from '../../components/ui';
 
 const InfoBoxes: FC = () => {
   return (
@@ -26,7 +26,7 @@ const InfoBoxes: FC = () => {
               link: '/properties/add',
               backgroundColor: 'bg-blue-500'
             }}
-            heading="For Renters"
+            heading="For Property Owners"
           >
             List your properties and reach potential tenants. Rent as an airbnb
             or long term.

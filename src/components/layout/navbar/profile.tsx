@@ -22,6 +22,7 @@ const Profile: FC<Props> = ({ isProfileMenuOpen, toggleIsProfileMenuOpen }) => {
         >
           <span className="absolute -inset-1.5"></span>
           <span className="sr-only">Open user menu</span>
+
           <Image
             alt=""
             className="h-8 w-8 rounded-full"

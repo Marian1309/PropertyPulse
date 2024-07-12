@@ -6,6 +6,6 @@ export type Link = {
   pathname: Pathname;
 };
 
-export type PropertType = {
+export type PropertyType = {
   label: string;
 };
