@@ -3,9 +3,18 @@ import type { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import type { Pathname } from '@/types';
+
 import { logo } from '@/assets/images';
 
-const MainMenu: FC = () => {
+import LinkList from './link-list';
+
+type Props = {
+  pathname: Pathname;
+  isLoggedIn: boolean;
+};
+
+const MainMenu: FC<Props> = ({ pathname, isLoggedIn }) => {
   return (
     <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
       <Link className="flex flex-shrink-0 items-center" href="/">
@@ -25,26 +34,7 @@ const MainMenu: FC = () => {
 
       <div className="hidden md:ml-6 md:block">
         <div className="flex space-x-2">
-          <Link
-            className="rounded-md bg-black px-3 py-2 text-white hover:bg-gray-900 hover:text-white"
-            href="/"
-          >
-            Home
-          </Link>
-
-          <Link
-            className="rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white"
-            href="/properties"
-          >
-            Properties
-          </Link>
-
-          <Link
-            className="text-nowrap rounded-md px-3 py-2 text-white hover:bg-gray-900 hover:text-white"
-            href="/properties/add"
-          >
-            Add Property
-          </Link>
+          <LinkList isLoggedIn={isLoggedIn} pathname={pathname} />
         </div>
       </div>
     </div>
