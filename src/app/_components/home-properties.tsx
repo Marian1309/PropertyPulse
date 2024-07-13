@@ -1,15 +1,17 @@
-import type { FC } from 'react';
-
 import Link from 'next/link';
 
-import PROPERTIES from '@/constants/properties.json';
+import type { Property } from '@/types';
 
-import { PropertyCard } from '../../components/ui';
+import { fetchProperties } from '@/lib/requests';
 
-const HomeProperties: FC = () => {
-  const recentProperties = PROPERTIES.sort(
-    () => Math.random() - Math.random()
-  ).slice(0, 3);
+import { PropertyCard } from '@/components/ui';
+
+const HomeProperties = async () => {
+  const properties: Property[] = await fetchProperties();
+
+  const recentProperties = properties
+    .sort(() => Math.random() - Math.random())
+    .slice(0, 3);
 
   return (
     <>
