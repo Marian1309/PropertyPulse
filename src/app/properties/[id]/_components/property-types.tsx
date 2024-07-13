@@ -2,28 +2,13 @@ import type { FC } from 'react';
 
 import { FaTimes } from 'react-icons/fa';
 
-import type { Property, RentObj, RentType } from '@/types';
+import type { Property, RentObj } from '@/types';
 
 type Props = {
   property: Property;
 };
 
 const PropertyTypes: FC<Props> = ({ property }) => {
-  const getAmountOfMoneyByRentType = (type: RentType) => {
-    return (
-      <>
-        {/* @ts-ignore */}
-        {property?.rates[type] ? (
-          <p className="text-blue-500">
-            ${`${property?.rates[type]?.toLocaleString() ?? ''}`}
-          </p>
-        ) : (
-          <FaTimes className="text-red-700" />
-        )}
-      </>
-    );
-  };
-
   const RENT_TYPES: RentObj[] = [
     { id: 1, label: 'Nightly', type: 'nightly' },
     { id: 2, label: 'Weekly', type: 'weekly' },
@@ -44,7 +29,13 @@ const PropertyTypes: FC<Props> = ({ property }) => {
           >
             <div className="mr-2 font-bold text-gray-500">{rentType.label}</div>
             <div className="text-2xl font-bold">
-              {getAmountOfMoneyByRentType(rentType.type)}
+              {property?.rates[rentType.type] ? (
+                <p className="text-blue-500">
+                  ${`${property?.rates?.[rentType?.type]?.toLocaleString()}`}
+                </p>
+              ) : (
+                <FaTimes className="text-red-700" />
+              )}
             </div>
           </div>
         ))}
