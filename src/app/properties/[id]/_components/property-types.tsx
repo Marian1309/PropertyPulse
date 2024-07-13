@@ -12,9 +12,10 @@ const PropertyTypes: FC<Props> = ({ property }) => {
   const getAmountOfMoneyByRentType = (type: RentType) => {
     return (
       <>
-        {property.rates[type] ? (
+        {/* @ts-ignore */}
+        {property?.rates[type] ? (
           <p className="text-blue-500">
-            ${`${property.rates[type].toLocaleString()}`}
+            ${`${property?.rates[type]?.toLocaleString() ?? ''}`}
           </p>
         ) : (
           <FaTimes className="text-red-700" />
