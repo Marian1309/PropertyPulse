@@ -11,10 +11,10 @@ import {
   FaRulerCombined
 } from 'react-icons/fa';
 
-import type PROPERTIES from '@/constants/properties.json';
+import type { Property } from '@/types';
 
 type Props = {
-  property: (typeof PROPERTIES)[0];
+  property: Property;
 };
 
 const PropertyCard: FC<Props> = ({ property }) => {
