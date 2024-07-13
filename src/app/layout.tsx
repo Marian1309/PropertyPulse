@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils';
 
 import { Footer, Navbar } from '@/components/layout';
 
+import { AuthProvider } from '@/providers';
+
 const poppins = Poppins({ subsets: ['latin'], weight: ['400'] });
 
 export const metadata: Metadata = {
@@ -26,13 +28,15 @@ type Props = {
 
 const RootLayout: FC<Props> = ({ children }) => {
   return (
-    <html lang="en">
-      <body className={cn(poppins.className, 'flex flex-col')}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body className={cn(poppins.className, 'flex flex-col')}>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </AuthProvider>
   );
 };
 
