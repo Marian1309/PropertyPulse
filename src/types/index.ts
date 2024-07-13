@@ -46,3 +46,18 @@ type SellerInfo = {
   email: string;
   phone: string;
 };
+
+export type ContactInput = {
+  id: string;
+  label: string;
+  type: string;
+  placeholder: string;
+};
+
+export type RentType = 'nightly' | 'weekly' | 'monthly';
+
+export type RentObj = {
+  id: number;
+  label: string;
+  type: RentType;
+};

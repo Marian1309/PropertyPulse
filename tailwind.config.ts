@@ -16,6 +16,12 @@ const config: Config = {
     },
 
     extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif']
+      },
+      gridTemplateColumns: {
+        '70/30': '70% 28%'
+      },
       screens: {
         xs: '375px'
       },
