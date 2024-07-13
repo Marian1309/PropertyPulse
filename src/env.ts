@@ -3,8 +3,8 @@ const env = {
     MONGODB_URL: process.env.MONGODB_URL
   },
   client: {
-    NEXT_PUBLIX_DOMAIN: process.env.NEXT_PUBLIX_DOMAIN,
-    NEXT_PUBLIX_API_DOMAIN: process.env.NEXT_PUBLIX_API_DOMAIN
+    NEXT_PUBLIC_DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
+    NEXT_PUBLIC_API_DOMAIN: process.env.NEXT_PUBLIC_API_DOMAIN
   }
 };
 

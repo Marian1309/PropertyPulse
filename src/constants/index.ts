@@ -1,4 +1,4 @@
-import type { Link, PropertyType } from '@/types';
+import type { ContactInput, Link, PropertyType } from '@/types';
 
 export const LINKS: Link[] = [
   { id: 1, label: 'Home', pathname: '/' },
@@ -16,4 +16,25 @@ export const PROPERTY_TYPE_OPTIONS: PropertyType[] = [
   { label: 'Loft' },
   { label: 'Room' },
   { label: 'Other' }
+];
+
+export const CONTACT_INPUTS: ContactInput[] = [
+  {
+    id: 'name',
+    label: 'Name:',
+    type: 'text',
+    placeholder: 'Enter your name'
+  },
+  {
+    id: 'email',
+    label: 'Email:',
+    type: 'email',
+    placeholder: 'Enter your email'
+  },
+  {
+    id: 'phone',
+    label: 'Phone:',
+    type: 'text',
+    placeholder: 'Enter your phone number'
+  }
 ];
