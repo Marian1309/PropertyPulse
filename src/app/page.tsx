@@ -7,6 +7,7 @@ const RootPage: FC = () => {
     <>
       <Hero />
       <InfoBoxes />
+      {/* @ts-expect-error Server Component */}
       <HomeProperties />
     </>
   );
