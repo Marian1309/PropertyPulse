@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 
+import type { Session } from 'next-auth';
+
 import type { Pathname } from '@/types';
 
 import { GoogleButton } from '@/components/ui';
@@ -8,7 +10,7 @@ import LinkList from './link-list';
 
 type Props = {
   pathname: Pathname;
-  isLoggedIn: boolean;
+  isLoggedIn: Session | null;
 };
 
 const MobileDropdownMenu: FC<Props> = ({ pathname, isLoggedIn }) => {

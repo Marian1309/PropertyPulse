@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import Image from 'next/image';
 
@@ -9,9 +9,16 @@ import ProfileDropdown from './profile-dropdown';
 type Props = {
   isProfileMenuOpen: boolean;
   toggleIsProfileMenuOpen: () => void;
+  profileImage: string | null | undefined;
+  setIsProfileMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const Profile: FC<Props> = ({ isProfileMenuOpen, toggleIsProfileMenuOpen }) => {
+const Profile: FC<Props> = ({
+  isProfileMenuOpen,
+  toggleIsProfileMenuOpen,
+  profileImage,
+  setIsProfileMenuOpen
+}) => {
   return (
     <div className="relative ml-3">
       <div>
@@ -28,13 +35,15 @@ const Profile: FC<Props> = ({ isProfileMenuOpen, toggleIsProfileMenuOpen }) => {
             className="h-8 w-8 rounded-full"
             height={100}
             priority
-            src={profile.src}
+            src={profileImage ?? profile.src}
             width={100}
           />
         </button>
       </div>
 
-      {isProfileMenuOpen && <ProfileDropdown />}
+      {isProfileMenuOpen && (
+        <ProfileDropdown setIsProfileMenuOpen={setIsProfileMenuOpen} />
+      )}
     </div>
   );
 };

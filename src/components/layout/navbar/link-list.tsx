@@ -2,6 +2,8 @@ import type { FC } from 'react';
 
 import Link from 'next/link';
 
+import type { Session } from 'next-auth';
+
 import type { Pathname } from '@/types';
 
 import { LINKS } from '@/constants';
@@ -10,7 +12,7 @@ import { cn } from '@/lib/utils';
 
 type Props = {
   pathname: Pathname;
-  isLoggedIn: boolean;
+  isLoggedIn: Session | null;
 };
 
 const LinkList: FC<Props> = ({ pathname, isLoggedIn }) => {

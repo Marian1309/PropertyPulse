@@ -3,6 +3,8 @@ import type { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import type { Session } from 'next-auth';
+
 import type { Pathname } from '@/types';
 
 import { logo } from '@/assets/images';
@@ -11,7 +13,7 @@ import LinkList from './link-list';
 
 type Props = {
   pathname: Pathname;
-  isLoggedIn: boolean;
+  isLoggedIn: Session | null;
 };
 
 const MainMenu: FC<Props> = ({ pathname, isLoggedIn }) => {

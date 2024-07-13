@@ -1,8 +1,12 @@
 'use client';
 
-import { type FC, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import { usePathname } from 'next/navigation';
+
+import type { BuiltInProviderType } from 'next-auth/providers/index';
+import type { ClientSafeProvider, LiteralUnion } from 'next-auth/react';
+import { getProviders, useSession } from 'next-auth/react';
 
 import type { Pathname } from '@/types';
 
@@ -15,11 +19,26 @@ import MobileDropdownMenu from './mofile-dropdown-menu';
 import Profile from './profile';
 
 const Navbar: FC = () => {
+  const { data: session } = useSession();
+  const pathname = usePathname();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState<boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [providers, setProiders] = useState<Record<
+    LiteralUnion<BuiltInProviderType, string>,
+    ClientSafeProvider
+  > | null>();
 
-  const pathname = usePathname();
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const providers = await getProviders();
+      setProiders(providers);
+    };
+
+    setAuthProviders();
+  }, []);
+
+  const profileImage = session?.user?.image;
 
   const toggleIsMobileMenuOpen = () => setIsMobileMenuOpen((prev) => !prev);
 
@@ -31,16 +50,24 @@ const Navbar: FC = () => {
         <div className="relative flex h-20 items-center justify-between">
           <MobileMenu toggleIsMobileMenuOpen={toggleIsMobileMenuOpen} />
 
-          <MainMenu isLoggedIn={isLoggedIn} pathname={pathname as Pathname} />
+          <MainMenu isLoggedIn={session} pathname={pathname as Pathname} />
 
-          {!isLoggedIn && <GoogleButton />}
+          {!session &&
+            providers &&
+            Object.values(providers).map(
+              (provider: ClientSafeProvider, index) => (
+                <GoogleButton key={index} provider={provider} />
+              )
+            )}
 
-          {isLoggedIn && (
+          {session && (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
               <Messages />
 
               <Profile
                 isProfileMenuOpen={isProfileMenuOpen}
+                profileImage={profileImage}
+                setIsProfileMenuOpen={setIsProfileMenuOpen}
                 toggleIsProfileMenuOpen={toggleIsProfileMenuOpen}
               />
             </div>
@@ -50,7 +77,7 @@ const Navbar: FC = () => {
 
       {isMobileMenuOpen && (
         <MobileDropdownMenu
-          isLoggedIn={isLoggedIn}
+          isLoggedIn={session}
           pathname={pathname as Pathname}
         />
       )}
