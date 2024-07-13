@@ -18,6 +18,8 @@ const prettierConfig = {
 
     '<THIRD_PARTY_MODULES>',
 
+    '^@/env',
+
     '^@/types',
 
     '^@/assets/(.*)$',
