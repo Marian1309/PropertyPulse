@@ -29,7 +29,7 @@ const Footer: FC = () => {
               </li>
 
               <li>
-                <Link href="/terms">Terms of Service</Link>
+                <Link href="/">Terms of Service</Link>
               </li>
             </ul>
           </div>

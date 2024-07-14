@@ -76,5 +76,5 @@ export type Fields = {
   rates: Rates;
   seller_info: SellerInfo;
   images: File[];
-  [key: string]: any; // Allow indexing with string
+  [key: string]: any;
 };

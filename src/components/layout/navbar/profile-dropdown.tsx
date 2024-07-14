@@ -21,7 +21,7 @@ const ProfileDropdown: FC<Props> = ({ setIsProfileMenuOpen }) => {
     >
       <Link
         className="block px-4 py-2 text-sm text-gray-700"
-        href="/profile"
+        href="/"
         tabIndex={-1}
       >
         Your Profile
@@ -29,7 +29,7 @@ const ProfileDropdown: FC<Props> = ({ setIsProfileMenuOpen }) => {
 
       <Link
         className="block px-4 py-2 text-sm text-gray-700"
-        href="/saved-properties"
+        href="/"
         tabIndex={-1}
       >
         Saved Properties

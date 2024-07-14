@@ -1,9 +1,8 @@
 'use client';
 
-import type { ChangeEvent } from 'react';
-import { type FC, useEffect, useState } from 'react';
+import type { FC } from 'react';
 
-import type { Fields } from '@/types';
+import { useFields } from '@/hooks';
 
 import AddPropertyAmenities from './amenities';
 import AddPropertyFurniture from './furniture';
@@ -14,98 +13,7 @@ import AddPropertyRates from './rates';
 import AddPropertyType from './type';
 
 const AddPropertyForm: FC = () => {
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [fields, setFields] = useState<Fields>({
-    type: '',
-    name: '',
-    description: '',
-    location: {
-      street: '',
-      city: '',
-      state: '',
-      zipcode: ''
-    },
-    beds: '',
-    baths: '',
-    square_feet: '',
-    amenities: ['Wifi'],
-    rates: {
-      weekly: '',
-      monthly: '',
-      nightly: ''
-    },
-    seller_info: {
-      name: '',
-      email: '',
-      phone: ''
-    },
-    images: []
-  });
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-
-    if (name.includes('.')) {
-      const [outerKey, innerKey] = name.split('.');
-
-      setFields((prevFields) => ({
-        ...prevFields,
-        [outerKey]: {
-          ...prevFields[outerKey],
-          [innerKey]: value
-        }
-      }));
-    } else {
-      setFields((prevFields) => ({
-        ...prevFields,
-        [name]: value
-      }));
-    }
-  };
-
-  const handleAmenitiesChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-
-    const updatedAmenities = [...fields.amenities];
-
-    if (checked) {
-      updatedAmenities.push(value);
-    } else {
-      const index = updatedAmenities.indexOf(value);
-
-      if (index !== -1) {
-        updatedAmenities.splice(index, 1);
-      }
-    }
-
-    setFields((prevFields) => ({
-      ...prevFields,
-      amenities: updatedAmenities
-    }));
-  };
-
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-
-    const updatedImages = [...fields.images];
-
-    if (files) {
-      for (const file of Array.from(files)) {
-        updatedImages.push(file);
-      }
-
-      setFields((prevFields: Fields) => ({
-        ...prevFields,
-        images: updatedImages
-      }));
-    }
-  };
+  const { isMounted, fields, handleChange } = useFields();
 
   if (!isMounted) {
     return null;
@@ -115,14 +23,12 @@ const AddPropertyForm: FC = () => {
     <form action="/api/properties" encType="multipart/form-data" method="POST">
       <h2 className="mb-6 text-center text-3xl font-semibold">Add Property</h2>
 
-      <AddPropertyType handleChange={handleChange} type={fields.type} />
+      <AddPropertyType />
 
       <AddPropertyInput
-        handleChange={handleChange}
         label="Listing Name"
         name="name"
         placeholder="eg. Beautiful Apartment In Miami"
-        type="text"
         value={fields.name}
       />
 
@@ -148,15 +54,11 @@ const AddPropertyForm: FC = () => {
 
       <AddPropertyFurniture fields={fields} handleChange={handleChange} />
 
-      <AddPropertyAmenities
-        amenities={fields.amenities}
-        handleAmenitiesChange={handleAmenitiesChange}
-      />
+      <AddPropertyAmenities />
 
       <AddPropertyRates handleChange={handleChange} rates={fields.rates} />
 
       <AddPropertyInput
-        handleChange={handleChange}
         label="Seller Name"
         name="seller_info.name"
         placeholder="Name"
@@ -165,7 +67,6 @@ const AddPropertyForm: FC = () => {
       />
 
       <AddPropertyInput
-        handleChange={handleChange}
         label="Seller Email"
         name="seller_info.email"
         placeholder="Email"
@@ -174,15 +75,13 @@ const AddPropertyForm: FC = () => {
       />
 
       <AddPropertyInput
-        handleChange={handleChange}
         label="Seller Phone"
         name="seller_info.phone"
         placeholder="Phone"
-        type="text"
         value={fields.seller_info.phone}
       />
 
-      <AddPropertyImages handleImageChange={handleImageChange} />
+      <AddPropertyImages />
 
       <div>
         <button

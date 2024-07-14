@@ -1,10 +1,11 @@
 import env from '@/env';
 
+import { cloudinary } from '@/config';
+
 import { Property } from '@/models';
 
-import cloudinary from '@/lib/cloudinary';
+import { getSessionUser } from '@/lib/auth';
 import connectDB from '@/lib/database';
-import { getSessionUser } from '@/lib/utils';
 
 export const GET = async () => {
   try {
@@ -94,10 +95,6 @@ export const POST = async (request: Request) => {
     return Response.redirect(
       `${env.server.NEXTAUTH_URL}/properties/${newProperty._id}`
     );
-
-    // return new Response(JSON.stringify({ message: 'Success' }), {
-    //   status: 200
-    // });
   } catch (err: unknown) {
     console.log(err);
     return new Response('Failed to add property', { status: 500 });

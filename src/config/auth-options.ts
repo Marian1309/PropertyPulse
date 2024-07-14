@@ -5,7 +5,7 @@ import env from '@/env';
 
 import { User } from '@/models';
 
-import connectDB from './database';
+import connectDB from '@/lib/database';
 
 const authOptions: AuthOptions = {
   providers: [

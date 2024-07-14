@@ -1,16 +1,12 @@
-import type { ChangeEvent, FC } from 'react';
+import type { FC } from 'react';
 
 import { ADD_PROPERTY_AMENITIES_CHECKBOXES } from '@/constants';
 
-type Props = {
-  amenities: string[];
-  handleAmenitiesChange: (e: ChangeEvent<HTMLInputElement>) => void;
-};
+import { useFields } from '@/hooks';
 
-const AddPropertyAmenities: FC<Props> = ({
-  amenities,
-  handleAmenitiesChange
-}) => {
+const AddPropertyAmenities: FC = () => {
+  const { fields, handleAmenitiesChange } = useFields();
+
   return (
     <div className="mb-4">
       <label className="mb-2 block font-bold text-gray-700">Amenities</label>
@@ -19,7 +15,7 @@ const AddPropertyAmenities: FC<Props> = ({
         {ADD_PROPERTY_AMENITIES_CHECKBOXES.map(({ id, value }) => (
           <div key={id}>
             <input
-              checked={amenities.includes(value)}
+              checked={fields.amenities.includes(value)}
               className="mr-2"
               name="amenities"
               onChange={handleAmenitiesChange}

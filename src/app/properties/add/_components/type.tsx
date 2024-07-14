@@ -1,15 +1,14 @@
-import type { ChangeEvent, FC } from 'react';
+'use client';
+
+import type { FC } from 'react';
 
 import { ADD_PROPERTY_FORM_SELECT_OPTIONS } from '@/constants';
 
-type Props = {
-  handleChange: (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => void;
-  type: string;
-};
+import { useFields } from '@/hooks';
 
-const AddPropertyType: FC<Props> = ({ handleChange, type }) => {
+const AddPropertyType: FC = () => {
+  const { fields, handleChange } = useFields();
+
   return (
     <div className="mb-4">
       <label className="mb-2 block font-bold text-gray-700">
@@ -21,7 +20,7 @@ const AddPropertyType: FC<Props> = ({ handleChange, type }) => {
         name="type"
         onChange={handleChange}
         required
-        value={type}
+        value={fields.type}
       >
         {ADD_PROPERTY_FORM_SELECT_OPTIONS.map(({ id, value }) => (
           <option key={id} value={value}>
