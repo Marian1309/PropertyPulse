@@ -37,7 +37,7 @@ const PropertyCard: FC<Props> = ({ property }) => {
         className="h-auto w-full rounded-t-xl"
         height={0}
         sizes="100vw"
-        src={`/properties/${property.images[0]}`}
+        src={property.images[0]}
         width={0}
       />
 

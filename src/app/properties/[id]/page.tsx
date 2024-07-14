@@ -11,6 +11,7 @@ import { useProperty } from '@/hooks';
 import {
   ContactSidebar,
   PropertyHeaderImage,
+  PropertyImages,
   PropertyInfo
 } from './_components';
 
@@ -55,6 +56,8 @@ const ProperyPage: FC = () => {
               </div>
             </div>
           </section>
+
+          <PropertyImages images={property.images} />
         </>
       )}
     </>

@@ -24,6 +24,7 @@ const prettierConfig = {
 
     '^@/assets/(.*)$',
 
+    '^@/models',
     '^@/constants',
     '^@/lib',
     '^@/hooks',
