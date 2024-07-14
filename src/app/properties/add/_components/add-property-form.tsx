@@ -26,6 +26,7 @@ const AddPropertyForm: FC = () => {
       <AddPropertyType />
 
       <AddPropertyInput
+        handleChange={handleChange}
         label="Listing Name"
         name="name"
         placeholder="eg. Beautiful Apartment In Miami"
@@ -59,6 +60,7 @@ const AddPropertyForm: FC = () => {
       <AddPropertyRates handleChange={handleChange} rates={fields.rates} />
 
       <AddPropertyInput
+        handleChange={handleChange}
         label="Seller Name"
         name="seller_info.name"
         placeholder="Name"
@@ -67,6 +69,7 @@ const AddPropertyForm: FC = () => {
       />
 
       <AddPropertyInput
+        handleChange={handleChange}
         label="Seller Email"
         name="seller_info.email"
         placeholder="Email"
@@ -75,6 +78,7 @@ const AddPropertyForm: FC = () => {
       />
 
       <AddPropertyInput
+        handleChange={handleChange}
         label="Seller Phone"
         name="seller_info.phone"
         placeholder="Phone"

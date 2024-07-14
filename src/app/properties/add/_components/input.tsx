@@ -1,8 +1,4 @@
-'use client';
-
-import type { FC } from 'react';
-
-import { useFields } from '@/hooks';
+import type { ChangeEvent, FC } from 'react';
 
 type Props = {
   label: string;
@@ -10,6 +6,9 @@ type Props = {
   placeholder: string;
   type?: string;
   value: string;
+  handleChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
 };
 
 const AddPropertyInput: FC<Props> = ({
@@ -17,10 +16,9 @@ const AddPropertyInput: FC<Props> = ({
   name,
   placeholder,
   type = 'text',
-  value
+  value,
+  handleChange
 }) => {
-  const { handleChange } = useFields();
-
   return (
     <div className="mb-4">
       <label className="mb-2 block font-bold text-gray-700">{label}</label>
