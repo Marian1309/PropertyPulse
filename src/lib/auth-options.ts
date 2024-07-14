@@ -3,8 +3,9 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import env from '@/env';
 
-import connectDB from './database';
 import { User } from '@/models';
+
+import connectDB from './database';
 
 const authOptions: AuthOptions = {
   providers: [
@@ -45,18 +46,9 @@ const authOptions: AuthOptions = {
     },
     session: async ({ session }) => {
       try {
-        if (session?.user?.email) {
-          const user = await User.findOne({ email: session.user.email });
+        const user = await User.findOne({ email: session?.user?.email });
 
-          if (user) {
-            // @ts-ignore
-            session.user.id = user._id.toString();
-          } else {
-            console.warn(`User not found for email: ${session.user.email}`);
-          }
-        } else {
-          console.warn('Session or session.user.email is not defined');
-        }
+        session.user.id = user._id.toString();
 
         return session;
       } catch (error) {

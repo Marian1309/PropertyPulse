@@ -29,16 +29,18 @@ export type Property = {
   updatedAt: string;
 };
 
-type Location = {
+export type Location = {
   street: string;
   city: string;
   state: string;
   zipcode: string;
+  [key: string]: any;
 };
-type Rates = {
-  weekly: number;
-  monthly?: number;
-  nightly?: number;
+export type Rates = {
+  weekly: number | string;
+  monthly?: number | string;
+  nightly?: number | string;
+  [key: string]: any;
 };
 
 type SellerInfo = {
@@ -60,4 +62,19 @@ export type RentObj = {
   id: number;
   label: string;
   type: RentType;
+};
+
+export type Fields = {
+  type: string;
+  name: string;
+  description: string;
+  location: Location;
+  beds: string;
+  baths: string;
+  square_feet: string;
+  amenities: string[];
+  rates: Rates;
+  seller_info: SellerInfo;
+  images: File[];
+  [key: string]: any; // Allow indexing with string
 };

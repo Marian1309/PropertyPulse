@@ -17,7 +17,7 @@ const PropertyHeaderImage: FC<Props> = ({ image }) => {
             height={0}
             priority
             sizes="100vw"
-            src={`/properties/${image}`}
+            src={image}
             width={0}
           />
         </div>
