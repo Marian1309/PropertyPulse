@@ -45,6 +45,12 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^19.2.2
         version: 19.2.2
+      '@commitlint/format':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@commitlint/types':
+        specifier: ^19.0.3
+        version: 19.0.3
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^4.3.0
         version: 4.3.0(prettier@3.3.2)

@@ -1,6 +1,19 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 
-const useMenu = () => {
+type Return = {
+  mobile: {
+    isOpen: boolean;
+    toggle: () => void;
+  };
+  profile: {
+    isOpen: boolean;
+    toggle: () => void;
+    setIsProfileMenuOpen: Dispatch<SetStateAction<boolean>>;
+  };
+};
+
+const useMenu = (): Return => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState<boolean>(false);
 

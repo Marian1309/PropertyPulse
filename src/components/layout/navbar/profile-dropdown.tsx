@@ -1,3 +1,5 @@
+'use client';
+
 import type { Dispatch, FC, SetStateAction } from 'react';
 
 import Link from 'next/link';
@@ -21,7 +23,8 @@ const ProfileDropdown: FC<Props> = ({ setIsProfileMenuOpen }) => {
     >
       <Link
         className="block px-4 py-2 text-sm text-gray-700"
-        href="/"
+        href="/profile"
+        onClick={() => setIsProfileMenuOpen(false)}
         tabIndex={-1}
       >
         Your Profile

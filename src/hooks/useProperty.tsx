@@ -6,7 +6,12 @@ import type { Property } from '@/types';
 
 import { fetchProperty } from '@/lib/requests';
 
-const useProperty = () => {
+type Return = {
+  property: Property | null;
+  loading: boolean;
+};
+
+const useProperty = (): Return => {
   const { id } = useParams<{ id: string }>();
 
   const [property, setProperty] = useState<Property | null>(null);

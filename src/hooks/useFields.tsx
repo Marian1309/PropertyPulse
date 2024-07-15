@@ -3,7 +3,17 @@ import { useEffect, useState } from 'react';
 
 import type { Fields } from '@/types';
 
-const useFields = () => {
+type Return = {
+  fields: Fields;
+  isMounted: boolean;
+  handleChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
+  handleAmenitiesChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
+
+const useFields = (): Return => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [fields, setFields] = useState<Fields>({
     type: '',
