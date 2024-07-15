@@ -8,14 +8,15 @@ import { toast } from 'react-toastify';
 
 import useEditPropertyFields from '@/hooks/usuEditPropertyFields';
 
+import {
+  PropertyAmenities,
+  PropertyFurniture,
+  PropertyInput,
+  PropertyLocation,
+  PropertyRates,
+  PropertyType
+} from '@/components/form';
 import { Spinner } from '@/components/ui';
-
-import AddPropertyAmenities from '@/app/properties/add/_components/amenities';
-import AddPropertyFurniture from '@/app/properties/add/_components/furniture';
-import AddPropertyInput from '@/app/properties/add/_components/input';
-import AddPropertyLocation from '@/app/properties/add/_components/location';
-import AddPropertyRates from '@/app/properties/add/_components/rates';
-import AddPropertyType from '@/app/properties/add/_components/type';
 
 const EditPropertyForm: FC = () => {
   const router = useRouter();
@@ -67,9 +68,9 @@ const EditPropertyForm: FC = () => {
     <form onSubmit={handleSubmit}>
       <h2 className="mb-6 text-center text-3xl font-semibold">Edit Property</h2>
 
-      <AddPropertyType />
+      <PropertyType fields={fields} handleChange={handleChange} />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Listing Name"
         name="name"
@@ -92,21 +93,21 @@ const EditPropertyForm: FC = () => {
         />
       </div>
 
-      <AddPropertyLocation
+      <PropertyLocation
         handleChange={handleChange}
         location={fields.location}
       />
 
-      <AddPropertyFurniture fields={fields} handleChange={handleChange} />
+      <PropertyFurniture fields={fields} handleChange={handleChange} />
 
-      <AddPropertyAmenities
+      <PropertyAmenities
         fields={fields}
         handleAmenitiesChange={handleAmenitiesChange}
       />
 
-      <AddPropertyRates handleChange={handleChange} rates={fields.rates} />
+      <PropertyRates handleChange={handleChange} rates={fields.rates} />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Seller Name"
         name="seller_info.name"
@@ -115,7 +116,7 @@ const EditPropertyForm: FC = () => {
         value={fields.seller_info.name}
       />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Seller Email"
         name="seller_info.email"
@@ -124,7 +125,7 @@ const EditPropertyForm: FC = () => {
         value={fields.seller_info.email}
       />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Seller Phone"
         name="seller_info.phone"

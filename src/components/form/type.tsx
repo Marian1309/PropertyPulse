@@ -1,14 +1,17 @@
-'use client';
+import type { ChangeEvent, FC } from 'react';
 
-import type { FC } from 'react';
+import type { AddPropertyFields, EditPropertyFields } from '@/types';
 
 import { ADD_PROPERTY_FORM_SELECT_OPTIONS } from '@/constants';
 
-import { useAddPropertyFields } from '@/hooks';
+type Props = {
+  fields: AddPropertyFields | EditPropertyFields;
+  handleChange: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
+};
 
-const AddPropertyType: FC = () => {
-  const { fields, handleChange } = useAddPropertyFields();
-
+const AddPropertyType: FC<Props> = ({ fields, handleChange }) => {
   return (
     <div className="mb-4">
       <label className="mb-2 block font-bold text-gray-700">

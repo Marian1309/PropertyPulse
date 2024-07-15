@@ -4,13 +4,15 @@ import type { FC } from 'react';
 
 import { useAddPropertyFields } from '@/hooks';
 
-import AddPropertyAmenities from './amenities';
-import AddPropertyFurniture from './furniture';
-import AddPropertyImages from './images';
-import AddPropertyInput from './input';
-import AddPropertyLocation from './location';
-import AddPropertyRates from './rates';
-import AddPropertyType from './type';
+import {
+  PropertyAmenities,
+  PropertyFurniture,
+  PropertyImages,
+  PropertyInput,
+  PropertyLocation,
+  PropertyRates,
+  PropertyType
+} from '@/components/form';
 
 const AddPropertyForm: FC = () => {
   const { isMounted, fields, handleChange, handleAmenitiesChange } =
@@ -24,9 +26,9 @@ const AddPropertyForm: FC = () => {
     <form action="/api/properties" encType="multipart/form-data" method="POST">
       <h2 className="mb-6 text-center text-3xl font-semibold">Add Property</h2>
 
-      <AddPropertyType />
+      <PropertyType fields={fields} handleChange={handleChange} />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Listing Name"
         name="name"
@@ -49,21 +51,21 @@ const AddPropertyForm: FC = () => {
         />
       </div>
 
-      <AddPropertyLocation
+      <PropertyLocation
         handleChange={handleChange}
         location={fields.location}
       />
 
-      <AddPropertyFurniture fields={fields} handleChange={handleChange} />
+      <PropertyFurniture fields={fields} handleChange={handleChange} />
 
-      <AddPropertyAmenities
+      <PropertyAmenities
         fields={fields}
         handleAmenitiesChange={handleAmenitiesChange}
       />
 
-      <AddPropertyRates handleChange={handleChange} rates={fields.rates} />
+      <PropertyRates handleChange={handleChange} rates={fields.rates} />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Seller Name"
         name="seller_info.name"
@@ -72,7 +74,7 @@ const AddPropertyForm: FC = () => {
         value={fields.seller_info.name}
       />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Seller Email"
         name="seller_info.email"
@@ -81,7 +83,7 @@ const AddPropertyForm: FC = () => {
         value={fields.seller_info.email}
       />
 
-      <AddPropertyInput
+      <PropertyInput
         handleChange={handleChange}
         label="Seller Phone"
         name="seller_info.phone"
@@ -89,7 +91,7 @@ const AddPropertyForm: FC = () => {
         value={fields.seller_info.phone}
       />
 
-      <AddPropertyImages />
+      <PropertyImages />
 
       <div>
         <button
