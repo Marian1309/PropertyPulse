@@ -4,10 +4,10 @@ import type { FC } from 'react';
 
 import { ADD_PROPERTY_FORM_SELECT_OPTIONS } from '@/constants';
 
-import { useFields } from '@/hooks';
+import { useAddPropertyFields } from '@/hooks';
 
 const AddPropertyType: FC = () => {
-  const { fields, handleChange } = useFields();
+  const { fields, handleChange } = useAddPropertyFields();
 
   return (
     <div className="mb-4">

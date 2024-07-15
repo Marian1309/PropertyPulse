@@ -1,12 +1,13 @@
-import type { FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 
 import { ADD_PROPERTY_AMENITIES_CHECKBOXES } from '@/constants';
 
-import { useFields } from '@/hooks';
+type Props = {
+  fields: any;
+  handleAmenitiesChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
-const AddPropertyAmenities: FC = () => {
-  const { fields, handleAmenitiesChange } = useFields();
-
+const AddPropertyAmenities: FC<Props> = ({ fields, handleAmenitiesChange }) => {
   return (
     <div className="mb-4">
       <label className="mb-2 block font-bold text-gray-700">Amenities</label>

@@ -1,6 +1,6 @@
 import type { ChangeEvent, FC } from 'react';
 
-import type { Fields } from '@/types';
+import type { AddPropertyFields, EditPropertyFields } from '@/types';
 
 import { ADD_PROPERTY_FORM_FUNTITURES } from '@/constants';
 
@@ -8,7 +8,7 @@ type Props = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void;
-  fields: Fields;
+  fields: AddPropertyFields | EditPropertyFields;
 };
 
 const AddPropertyFurniture: FC<Props> = ({ handleChange, fields }) => {

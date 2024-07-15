@@ -21,7 +21,8 @@ const Configuration: UserConfig = {
         'revert' // Reverts a previous commit
       ]
     ],
-    'scope-enum': [0, 'always', []]
+    'scope-enum': [0, 'always', []],
+    'body-max-line-length': [0, 'always', Infinity]
   }
 };
 

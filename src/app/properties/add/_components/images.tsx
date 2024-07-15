@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 
-import { useFields } from '@/hooks';
+import { useAddPropertyFields } from '@/hooks';
 
 const AddPropertyImages: FC = () => {
-  const { handleImageChange } = useFields();
+  const { handleImageChange } = useAddPropertyFields();
 
   return (
     <div className="mb-4">

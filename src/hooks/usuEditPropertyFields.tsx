@@ -1,21 +1,27 @@
 import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
 
-import type { Fields } from '@/types';
+import { useParams } from 'next/navigation';
+
+import type { EditPropertyFields } from '@/types';
+
+import { fetchProperty } from '@/lib/requests';
 
 type Return = {
-  fields: Fields;
+  fields: EditPropertyFields;
   isMounted: boolean;
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void;
   handleAmenitiesChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  loading: boolean;
 };
 
-const useFields = (): Return => {
+const useEditPropertyFields = (): Return => {
+  const { id } = useParams();
+  const [loading, setLoading] = useState(true);
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [fields, setFields] = useState<Fields>({
+  const [fields, setFields] = useState<EditPropertyFields>({
     type: '',
     name: '',
     description: '',
@@ -38,13 +44,25 @@ const useFields = (): Return => {
       name: '',
       email: '',
       phone: ''
-    },
-    images: []
+    }
   });
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+
+    const fetchPropertyData = async () => {
+      try {
+        const propertyData = await fetchProperty(id as string);
+        setFields(propertyData);
+      } catch (err: unknown) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPropertyData();
+  }, [id]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -90,30 +108,13 @@ const useFields = (): Return => {
     }));
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-
-    const updatedImages = [...fields.images];
-
-    if (files) {
-      for (const file of Array.from(files)) {
-        updatedImages.push(file);
-      }
-
-      setFields((prevFields: Fields) => ({
-        ...prevFields,
-        images: updatedImages
-      }));
-    }
-  };
-
   return {
     fields,
     isMounted,
     handleChange,
     handleAmenitiesChange,
-    handleImageChange
+    loading
   };
 };
 
-export default useFields;
+export default useEditPropertyFields;

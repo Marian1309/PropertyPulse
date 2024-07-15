@@ -1,28 +1,71 @@
 'use client';
 
-import type { FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 
-import { useAddPropertyFields } from '@/hooks';
+import { useParams, useRouter } from 'next/navigation';
 
-import AddPropertyAmenities from './amenities';
-import AddPropertyFurniture from './furniture';
-import AddPropertyImages from './images';
-import AddPropertyInput from './input';
-import AddPropertyLocation from './location';
-import AddPropertyRates from './rates';
-import AddPropertyType from './type';
+import { toast } from 'react-toastify';
 
-const AddPropertyForm: FC = () => {
-  const { isMounted, fields, handleChange, handleAmenitiesChange } =
-    useAddPropertyFields();
+import useEditPropertyFields from '@/hooks/usuEditPropertyFields';
+
+import { Spinner } from '@/components/ui';
+
+import AddPropertyAmenities from '@/app/properties/add/_components/amenities';
+import AddPropertyFurniture from '@/app/properties/add/_components/furniture';
+import AddPropertyInput from '@/app/properties/add/_components/input';
+import AddPropertyLocation from '@/app/properties/add/_components/location';
+import AddPropertyRates from '@/app/properties/add/_components/rates';
+import AddPropertyType from '@/app/properties/add/_components/type';
+
+const EditPropertyForm: FC = () => {
+  const router = useRouter();
+  const { id } = useParams();
+  const { isMounted, fields, handleChange, loading, handleAmenitiesChange } =
+    useEditPropertyFields();
 
   if (!isMounted) {
     return null;
   }
 
+  if (loading) {
+    return (
+      <div className="h-adaptive">
+        <Spinner loading={loading} />;
+      </div>
+    );
+  }
+
+  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    toast.success('Good');
+
+    return;
+
+    try {
+      const formData = new FormData(e.target);
+
+      const res = await fetch(`/api/properties/${id}`, {
+        method: 'PUT',
+        body: formData
+      });
+
+      if (res.status === 200) {
+        router.push(`/properties/${id}`);
+      } else if (res.status === 401 || res.status === 403) {
+        toast.error('Permission denied');
+      } else {
+        toast.error('Something went wrong');
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Something went wrong');
+    }
+  };
+
   return (
-    <form action="/api/properties" encType="multipart/form-data" method="POST">
-      <h2 className="mb-6 text-center text-3xl font-semibold">Add Property</h2>
+    <form onSubmit={handleSubmit}>
+      <h2 className="mb-6 text-center text-3xl font-semibold">Edit Property</h2>
 
       <AddPropertyType />
 
@@ -89,18 +132,16 @@ const AddPropertyForm: FC = () => {
         value={fields.seller_info.phone}
       />
 
-      <AddPropertyImages />
-
       <div>
         <button
           className="focus:shadow-outline w-full rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
           type="submit"
         >
-          Add Property
+          Edit Property
         </button>
       </div>
     </form>
   );
 };
 
-export default AddPropertyForm;
+export default EditPropertyForm;

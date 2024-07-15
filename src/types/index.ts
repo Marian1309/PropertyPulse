@@ -64,7 +64,7 @@ export type RentObj = {
   type: RentType;
 };
 
-export type Fields = {
+export type AddPropertyFields = {
   type: string;
   name: string;
   description: string;
@@ -76,5 +76,19 @@ export type Fields = {
   rates: Rates;
   seller_info: SellerInfo;
   images: File[];
+  [key: string]: any;
+};
+
+export type EditPropertyFields = {
+  type: string;
+  name: string;
+  description: string;
+  location: Location;
+  beds: string;
+  baths: string;
+  square_feet: string;
+  amenities: string[];
+  rates: Rates;
+  seller_info: SellerInfo;
   [key: string]: any;
 };

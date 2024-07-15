@@ -29,7 +29,7 @@ const ProperyPage: FC = () => {
     });
   }
 
-  if (!property && !loading) {
+  if (!property) {
     return (
       <h1 className="mt-10 text-center text-2xl font-bold">
         Property Not Found
@@ -37,10 +37,12 @@ const ProperyPage: FC = () => {
     );
   }
 
+  if (loading) {
+    return <Spinner loading={loading} />;
+  }
+
   return (
     <>
-      {loading && <Spinner loading={loading} />}
-
       {!loading && property && (
         <>
           <PropertyHeaderImage image={property.images[0]} />
