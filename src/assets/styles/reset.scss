@@ -3,6 +3,7 @@
   html,
   body {
     @apply h-full scroll-smooth bg-background text-[16px] leading-normal text-foreground antialiased;
+    box-sizing: border-box;
   }
 
   * {

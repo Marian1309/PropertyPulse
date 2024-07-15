@@ -3,6 +3,9 @@ import type { FC, ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import '@/assets/styles/globals.scss';
 
 import { cn } from '@/lib/utils';
@@ -30,10 +33,12 @@ const RootLayout: FC<Props> = ({ children }) => {
   return (
     <AuthProvider>
       <html lang="en">
-        <body className={cn(poppins.className, 'flex flex-col')}>
+        <body className={cn(poppins.className, 'flex min-h-[100vh] flex-col')}>
           <Navbar />
-          <main>{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
+
+          <ToastContainer autoClose={2000} />
         </body>
       </html>
     </AuthProvider>

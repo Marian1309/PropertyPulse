@@ -3,8 +3,10 @@
 import type { FC } from 'react';
 
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 import { FaArrowLeft } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 import { useProperty } from '@/hooks';
 
@@ -19,6 +21,13 @@ import { Spinner } from '@/components/ui';
 
 const ProperyPage: FC = () => {
   const { property, loading } = useProperty();
+  const searchParams = useSearchParams();
+
+  if (searchParams.get('new')) {
+    toast.success('New Property successfully created', {
+      toastId: 'new_property'
+    });
+  }
 
   if (!property && !loading) {
     return (

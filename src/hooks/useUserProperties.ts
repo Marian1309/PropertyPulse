@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
 
 import type { Property } from '@/types';
 
@@ -12,6 +13,7 @@ type Return = {
   };
   properties: Property[];
   loading: boolean;
+  handleDeleteProperty: (propertyId: string) => Promise<void>;
 };
 
 const useUserProperties = (): Return => {
@@ -55,10 +57,39 @@ const useUserProperties = (): Return => {
     }
   }, [session]);
 
+  const handleDeleteProperty = async (propertyId: string) => {
+    const confirmed = window.confirm('Are you sure to delete this property?');
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/properties/${propertyId}`, {
+        method: 'DELETE'
+      });
+
+      if (res.status === 200) {
+        const updatedProperties = properties.filter(
+          (property) => property._id !== propertyId
+        );
+
+        setProperties(updatedProperties);
+        toast.success('Property Deleted');
+      } else {
+        toast.error('Failed to delete property');
+      }
+    } catch (err: unknown) {
+      console.log(err);
+      toast.error('Failed to delete property');
+    }
+  };
+
   return {
     profile,
     properties,
-    loading
+    loading,
+    handleDeleteProperty
   };
 };
 

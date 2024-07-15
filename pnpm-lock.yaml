@@ -38,6 +38,9 @@ importers:
       react-spinners:
         specifier: ^0.14.1
         version: 0.14.1(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
+      react-toastify:
+        specifier: ^10.0.5
+        version: 10.0.5(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       sharp:
         specifier: ^0.33.4
         version: 0.33.4
@@ -2325,6 +2328,12 @@ packages:
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+
+  react-toastify@10.0.5:
+    resolution: {integrity: sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
 
   react@18.0.0:
     resolution: {integrity: sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A==}
@@ -5122,6 +5131,12 @@ snapshots:
 
   react-spinners@0.14.1(react-dom@18.0.0(react@18.0.0))(react@18.0.0):
     dependencies:
+      react: 18.0.0
+      react-dom: 18.0.0(react@18.0.0)
+
+  react-toastify@10.0.5(react-dom@18.0.0(react@18.0.0))(react@18.0.0):
+    dependencies:
+      clsx: 2.1.1
       react: 18.0.0
       react-dom: 18.0.0(react@18.0.0)
 
