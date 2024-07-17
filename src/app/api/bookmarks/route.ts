@@ -1,9 +1,32 @@
-import { User } from '@/models';
+import { Property, User } from '@/models';
 
 import { getSessionUser } from '@/lib/auth';
 import connectDB from '@/lib/database';
 
 export const dynamic = 'force-dynamic';
+
+export const GET = async () => {
+  try {
+    await connectDB();
+
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser.userId) {
+      return new Response('User id is required', { status: 401 });
+    }
+
+    const { userId } = sessionUser;
+
+    const user = await User.findOne({ _id: userId });
+
+    const bookmarks = await Property.find({ _id: { $in: user.bookmarks } });
+
+    return new Response(JSON.stringify(bookmarks), { status: 200 });
+  } catch (err: unknown) {
+    console.log(err);
+    return new Response('Something went wrong', { status: 500 });
+  }
+};
 
 export const POST = async (request: Request) => {
   try {
@@ -42,6 +65,6 @@ export const POST = async (request: Request) => {
     });
   } catch (err: unknown) {
     console.log(err);
-    return new Response('Somethig went wrong', { status: 500 });
+    return new Response('Something went wrong', { status: 500 });
   }
 };
