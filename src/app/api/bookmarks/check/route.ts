@@ -5,6 +5,7 @@ import connectDB from '@/lib/database';
 
 export const dynamic = 'force-dynamic';
 
+// POST /api/bookmarks/check
 export const POST = async (request: Request) => {
   try {
     await connectDB();

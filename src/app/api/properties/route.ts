@@ -7,6 +7,7 @@ import { Property } from '@/models';
 import { getSessionUser } from '@/lib/auth';
 import connectDB from '@/lib/database';
 
+// GET /api/properties
 export const GET = async () => {
   try {
     await connectDB();
@@ -22,6 +23,7 @@ export const GET = async () => {
   }
 };
 
+// POST /api/properties
 export const POST = async (request: Request) => {
   try {
     await connectDB();

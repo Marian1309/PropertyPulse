@@ -2,6 +2,7 @@ import { Property } from '@/models';
 
 import connectDB from '@/lib/database';
 
+// GET /api/properties/search
 export const GET = async (request: Request) => {
   try {
     await connectDB();

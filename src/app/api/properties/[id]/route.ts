@@ -5,6 +5,8 @@ import { Property } from '@/models';
 import { getSessionUser } from '@/lib/auth';
 import connectDB from '@/lib/database';
 
+// GET /api/properties/:id
+
 export const GET = async (
   request: NextRequest,
   { params }: { params: { id: number } }
@@ -26,6 +28,8 @@ export const GET = async (
     return new Response('Something Went Wrong', { status: 500 });
   }
 };
+
+// DELETE /api/properties/:id
 
 export const DELETE = async (
   request: NextRequest,
@@ -65,6 +69,7 @@ export const DELETE = async (
   }
 };
 
+// PUT /api/properties/:id
 export const PUT = async (
   request: Request,
   { params }: { params: { id: string } }

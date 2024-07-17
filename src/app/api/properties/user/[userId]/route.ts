@@ -4,6 +4,7 @@ import { Property } from '@/models';
 
 import connectDB from '@/lib/database';
 
+// GET  /api/properties/user/:userId
 export const GET = async (
   request: NextRequest,
   { params }: { params: { userId: number } }

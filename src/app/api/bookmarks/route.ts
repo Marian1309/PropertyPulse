@@ -5,6 +5,7 @@ import connectDB from '@/lib/database';
 
 export const dynamic = 'force-dynamic';
 
+// GET /api/bookmarks
 export const GET = async () => {
   try {
     await connectDB();
@@ -28,6 +29,7 @@ export const GET = async () => {
   }
 };
 
+// POST  /api/bookmarks
 export const POST = async (request: Request) => {
   try {
     await connectDB();
