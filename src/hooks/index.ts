@@ -6,3 +6,4 @@ export { default as useUserProperties } from './useUserProperties';
 export { default as useBookmarkButton } from './useBookmarkButton';
 export { default as useSavedProperties } from './useSavedProperties';
 export { default as useProfileDropdown } from './useProfileDropdown';
+export { default as useSearchResults } from './useSearchResults';

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import PropertySearchForm from './property-search-form';
+import { PropertySearchForm } from '@/components/ui';
 
 const Hero: FC = () => {
   return (

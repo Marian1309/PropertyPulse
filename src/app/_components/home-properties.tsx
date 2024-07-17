@@ -2,9 +2,8 @@ import Link from 'next/link';
 
 import type { Property } from '@/types';
 
+import render from '@/lib/render';
 import { fetchProperties } from '@/lib/requests';
-
-import { PropertyCard } from '@/components/ui';
 
 const HomeProperties = async () => {
   const properties: Property[] = await fetchProperties();
@@ -12,20 +11,6 @@ const HomeProperties = async () => {
   const recentProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
-
-  const render = (properties: Property[]) => {
-    if (properties.length === 0) {
-      return <p>No Properties Found</p>;
-    }
-
-    return (
-      <>
-        {properties.map((property) => (
-          <PropertyCard key={property._id} property={property} />
-        ))}
-      </>
-    );
-  };
 
   return (
     <>
@@ -35,9 +20,7 @@ const HomeProperties = async () => {
             Recent Properties
           </h2>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {render(recentProperties)}
-          </div>
+          {render(recentProperties)}
         </div>
       </section>
 
