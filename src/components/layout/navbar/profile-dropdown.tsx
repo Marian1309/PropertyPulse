@@ -6,11 +6,15 @@ import Link from 'next/link';
 
 import { signOut } from 'next-auth/react';
 
+import { useProfileDropdown } from '@/hooks';
+
 type Props = {
   setIsProfileMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const ProfileDropdown: FC<Props> = ({ setIsProfileMenuOpen }) => {
+  const dropdownRef = useProfileDropdown(setIsProfileMenuOpen);
+
   const handleSignOut = () => {
     setIsProfileMenuOpen(false);
     signOut();
@@ -19,6 +23,7 @@ const ProfileDropdown: FC<Props> = ({ setIsProfileMenuOpen }) => {
   return (
     <div
       className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+      ref={dropdownRef}
       tabIndex={-1}
     >
       <Link
