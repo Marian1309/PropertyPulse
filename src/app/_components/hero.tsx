@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import HeroForm from './hero-form';
+import PropertySearchForm from './property-search-form';
 
 const Hero: FC = () => {
   return (
@@ -16,7 +16,7 @@ const Hero: FC = () => {
           </p>
         </div>
 
-        <HeroForm />
+        <PropertySearchForm />
       </div>
     </section>
   );

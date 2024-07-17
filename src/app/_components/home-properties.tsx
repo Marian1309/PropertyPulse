@@ -13,6 +13,20 @@ const HomeProperties = async () => {
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
 
+  const render = (properties: Property[]) => {
+    if (properties.length === 0) {
+      return <p>No Properties Found</p>;
+    }
+
+    return (
+      <>
+        {properties.map((property) => (
+          <PropertyCard key={property._id} property={property} />
+        ))}
+      </>
+    );
+  };
+
   return (
     <>
       <section className="px-4 py-6">
@@ -22,13 +36,7 @@ const HomeProperties = async () => {
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {recentProperties.length === 0 ? (
-              <p>No Properties Found</p>
-            ) : (
-              recentProperties.map((property) => (
-                <PropertyCard key={property._id} property={property} />
-              ))
-            )}
+            {render(recentProperties)}
           </div>
         </div>
       </section>
