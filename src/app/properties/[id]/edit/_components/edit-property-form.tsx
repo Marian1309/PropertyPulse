@@ -39,10 +39,6 @@ const EditPropertyForm: FC = () => {
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    toast.success('Good');
-
-    return;
-
     try {
       const formData = new FormData(e.target);
 
@@ -52,7 +48,7 @@ const EditPropertyForm: FC = () => {
       });
 
       if (res.status === 200) {
-        router.push(`/properties/${id}`);
+        router.push(`/properties/${id}?updated=true`);
       } else if (res.status === 401 || res.status === 403) {
         toast.error('Permission denied');
       } else {

@@ -53,6 +53,18 @@ const useEditPropertyFields = (): Return => {
     const fetchPropertyData = async () => {
       try {
         const propertyData = await fetchProperty(id as string);
+
+        if (propertyData && propertyData.rates) {
+          const defaultRates = { ...propertyData.rates };
+
+          for (const rate in defaultRates) {
+            if (defaultRates[rate] === null) {
+              defaultRates[rate] = '';
+            }
+          }
+
+          propertyData.rates = defaultRates;
+        }
         setFields(propertyData);
       } catch (err: unknown) {
         console.log(err);

@@ -29,6 +29,12 @@ const ProperyPage: FC = () => {
     });
   }
 
+  if (searchParams.get('updated')) {
+    toast.success('Property successfully updated', {
+      toastId: 'updated_property'
+    });
+  }
+
   if (!property) {
     return (
       <h1 className="mt-10 text-center text-2xl font-bold">
