@@ -1,19 +1,21 @@
 import type { FC } from 'react';
 
-import { FaBookmark, FaShare } from 'react-icons/fa';
+import type { Property } from '@/types';
 
+import BookmarkButton from './bookmark-button';
 import ContactForm from './contact-form';
+import ShareButton from './share-button';
 
-const ContactSidebar: FC = () => {
+type Props = {
+  property: Property;
+};
+
+const ContactSidebar: FC<Props> = ({ property }) => {
   return (
     <aside className="space-y-4">
-      <button className="flex w-full items-center justify-center rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600">
-        <FaBookmark className="mr-2" /> Bookmark Property
-      </button>
+      <BookmarkButton property={property} />
 
-      <button className="flex w-full items-center justify-center rounded-full bg-orange-500 px-4 py-2 font-bold text-white hover:bg-orange-600">
-        <FaShare className="mr-2" /> Share Property
-      </button>
+      <ShareButton property={property} />
 
       <div className="rounded-lg bg-white p-6 shadow-md">
         <h3 className="mb-6 text-xl font-bold">Contact Property Manager</h3>

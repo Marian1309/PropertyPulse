@@ -69,7 +69,7 @@ const ProperyPage: FC = () => {
               <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-70/30">
                 <PropertyInfo property={property} />
 
-                <ContactSidebar />
+                <ContactSidebar property={property} />
               </div>
             </div>
           </section>
