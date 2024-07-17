@@ -19,9 +19,10 @@ import {
 
 import { Spinner } from '@/components/ui';
 
-const ProperyPage: FC = () => {
-  const { property, loading } = useProperty();
+const PropertyPage: FC = () => {
   const searchParams = useSearchParams();
+
+  const { property, loading } = useProperty();
 
   if (searchParams.get('new')) {
     toast.success('New Property successfully created', {
@@ -35,16 +36,16 @@ const ProperyPage: FC = () => {
     });
   }
 
+  if (loading) {
+    return <Spinner loading={loading} />;
+  }
+
   if (!property) {
     return (
       <h1 className="mt-10 text-center text-2xl font-bold">
         Property Not Found
       </h1>
     );
-  }
-
-  if (loading) {
-    return <Spinner loading={loading} />;
   }
 
   return (
@@ -81,4 +82,4 @@ const ProperyPage: FC = () => {
   );
 };
 
-export default ProperyPage;
+export default PropertyPage;

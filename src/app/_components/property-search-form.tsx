@@ -10,10 +10,10 @@ import { PROPERTY_TYPE_OPTIONS } from '@/constants';
 import { handleChange } from '@/lib/utils';
 
 const PropertySearchForm: FC = () => {
+  const router = useRouter();
+
   const [location, setLocation] = useState<string>('');
   const [propertyType, setPropertyType] = useState<string>('All');
-
-  const router = useRouter();
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();

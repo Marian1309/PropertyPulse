@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { useSession } from 'next-auth/react';
+
 import type { Property } from '@/types';
 
 import { useUserProperties } from '@/hooks';
@@ -15,8 +17,10 @@ type Props = {
 };
 
 const ProfileListing: FC<Props> = ({ property }) => {
-  const { handleDeleteProperty } = useUserProperties();
   const router = useRouter();
+  const { data: session } = useSession();
+
+  const { handleDeleteProperty } = useUserProperties(session);
 
   const handleDelete = async () => {
     await handleDeleteProperty(property._id);
@@ -38,6 +42,7 @@ const ProfileListing: FC<Props> = ({ property }) => {
 
       <div className="mt-2">
         <p className="text-lg font-semibold">{property.name}</p>
+
         <p className="text-gray-600">
           Address: {property.location.street} {property.location.city}{' '}
           {property.location.state}

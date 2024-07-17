@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import EditPropertyForm from './_components/edit-property-form';
+import { EditPropertyForm } from './_components';
 
 const PropertyEditPage: FC = () => {
   return (

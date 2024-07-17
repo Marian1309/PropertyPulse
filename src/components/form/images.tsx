@@ -1,10 +1,10 @@
-import type { FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 
-import { useAddPropertyFields } from '@/hooks';
+type Props = {
+  handleImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
-const AddPropertyImages: FC = () => {
-  const { handleImageChange } = useAddPropertyFields();
-
+const AddPropertyImages: FC<Props> = ({ handleImageChange }) => {
   return (
     <div className="mb-4">
       <label className="mb-2 block font-bold text-gray-700">

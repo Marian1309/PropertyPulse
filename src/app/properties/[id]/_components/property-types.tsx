@@ -4,16 +4,24 @@ import { FaTimes } from 'react-icons/fa';
 
 import type { Property, RentObj } from '@/types';
 
+import { RENT_TYPES } from '@/constants';
+
 type Props = {
   property: Property;
 };
 
 const PropertyTypes: FC<Props> = ({ property }) => {
-  const RENT_TYPES: RentObj[] = [
-    { id: 1, label: 'Nightly', type: 'nightly' },
-    { id: 2, label: 'Weekly', type: 'weekly' },
-    { id: 3, label: 'Monthly', type: 'monthly' }
-  ];
+  const renderPrice = (rentType: RentObj) => {
+    if (property?.rates[rentType.type]) {
+      return (
+        <p className="text-blue-500">
+          ${`${property?.rates?.[rentType?.type]?.toLocaleString()}`}
+        </p>
+      );
+    }
+
+    return <FaTimes className="text-red-700" />;
+  };
 
   return (
     <>
@@ -28,15 +36,8 @@ const PropertyTypes: FC<Props> = ({ property }) => {
             key={rentType.id}
           >
             <div className="mr-2 font-bold text-gray-500">{rentType.label}</div>
-            <div className="text-2xl font-bold">
-              {property?.rates[rentType.type] ? (
-                <p className="text-blue-500">
-                  ${`${property?.rates?.[rentType?.type]?.toLocaleString()}`}
-                </p>
-              ) : (
-                <FaTimes className="text-red-700" />
-              )}
-            </div>
+
+            <div className="text-2xl font-bold">{renderPrice(rentType)}</div>
           </div>
         ))}
       </div>

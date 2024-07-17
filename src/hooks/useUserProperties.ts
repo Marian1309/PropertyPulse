@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { useSession } from 'next-auth/react';
+import type { Session } from 'next-auth';
 import { toast } from 'react-toastify';
 
 import type { Property } from '@/types';
 
-type Return = {
+type Return = (session: Session | null) => {
   profile: {
     name: string | null | undefined;
     email: string | null | undefined;
@@ -16,9 +16,7 @@ type Return = {
   handleDeleteProperty: (propertyId: string) => Promise<void>;
 };
 
-const useUserProperties = (): Return => {
-  const { data: session } = useSession();
-
+const useUserProperties: Return = (session) => {
   const profileName = session?.user.name;
   const profileEmail = session?.user.email;
   const profileImage = session?.user.image;
@@ -86,9 +84,9 @@ const useUserProperties = (): Return => {
   };
 
   return {
+    loading,
     profile,
     properties,
-    loading,
     handleDeleteProperty
   };
 };

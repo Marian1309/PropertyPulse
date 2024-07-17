@@ -80,8 +80,8 @@ const useBookmarkButton = (property: Property): Return => {
   };
 
   return {
-    isBookMarked,
     loading,
+    isBookMarked,
     handleClick
   };
 };

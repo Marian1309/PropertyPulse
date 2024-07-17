@@ -1,13 +1,11 @@
 import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
 
-import { useParams } from 'next/navigation';
-
 import type { EditPropertyFields } from '@/types';
 
 import { fetchProperty } from '@/lib/requests';
 
-type Return = {
+type Return = (editPropertyId: string) => {
   fields: EditPropertyFields;
   isMounted: boolean;
   handleChange: (
@@ -17,8 +15,7 @@ type Return = {
   loading: boolean;
 };
 
-const useEditPropertyFields = (): Return => {
-  const { id } = useParams();
+const useEditPropertyFields: Return = (editPropertyId) => {
   const [loading, setLoading] = useState(true);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [fields, setFields] = useState<EditPropertyFields>({
@@ -52,7 +49,7 @@ const useEditPropertyFields = (): Return => {
 
     const fetchPropertyData = async () => {
       try {
-        const propertyData = await fetchProperty(id as string);
+        const propertyData = await fetchProperty(editPropertyId as string);
 
         if (propertyData && propertyData.rates) {
           const defaultRates = { ...propertyData.rates };
@@ -74,7 +71,7 @@ const useEditPropertyFields = (): Return => {
     };
 
     fetchPropertyData();
-  }, [id]);
+  }, [editPropertyId]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>

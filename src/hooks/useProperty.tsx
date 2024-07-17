@@ -39,8 +39,8 @@ const useProperty = (): Return => {
   }, [id, property]);
 
   return {
-    property,
-    loading
+    loading,
+    property
   };
 };
 

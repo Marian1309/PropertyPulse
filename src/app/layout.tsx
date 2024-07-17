@@ -3,16 +3,13 @@ import type { FC, ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import '@/assets/styles/globals.scss';
 
 import { cn } from '@/lib/utils';
 
 import { Footer, Navbar } from '@/components/layout';
 
-import { AuthProvider } from '@/providers';
+import { AuthProvider, ToastProvider } from '@/providers';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400'] });
 
@@ -38,7 +35,7 @@ const RootLayout: FC<Props> = ({ children }) => {
           <main className="flex-1">{children}</main>
           <Footer />
 
-          <ToastContainer autoClose={2000} />
+          <ToastProvider />
         </body>
       </html>
     </AuthProvider>

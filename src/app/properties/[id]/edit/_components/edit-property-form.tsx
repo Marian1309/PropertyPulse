@@ -20,9 +20,10 @@ import { Spinner } from '@/components/ui';
 
 const EditPropertyForm: FC = () => {
   const router = useRouter();
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
+
   const { isMounted, fields, handleChange, loading, handleAmenitiesChange } =
-    useEditPropertyFields();
+    useEditPropertyFields(id);
 
   if (!isMounted) {
     return null;

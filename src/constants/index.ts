@@ -1,4 +1,4 @@
-import type { Link, PropertyType } from '@/types';
+import type { Link, PropertyType, RentObj } from '@/types';
 
 export const LINKS: Link[] = [
   { id: 1, label: 'Home', pathname: '/' },
@@ -182,4 +182,10 @@ export const ADD_PROPERTY_RATES = [
     label: 'Nightly',
     name: 'rates.nightly'
   }
+];
+
+export const RENT_TYPES: RentObj[] = [
+  { id: 1, label: 'Nightly', type: 'nightly' },
+  { id: 2, label: 'Weekly', type: 'weekly' },
+  { id: 3, label: 'Monthly', type: 'monthly' }
 ];

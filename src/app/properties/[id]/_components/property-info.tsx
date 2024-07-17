@@ -12,10 +12,6 @@ const PropertyInfo: FC<Props> = ({ property }) => {
   return (
     <main>
       <PropertyDetails property={property} />
-
-      <div className="mt-6 rounded-lg bg-white p-6 shadow-md">
-        <div id="map"></div>
-      </div>
     </main>
   );
 };
