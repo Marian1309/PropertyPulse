@@ -10,6 +10,8 @@ export const cn = (...inputs: ClassValue[]): string => {
 
 export const handleChange =
   (setter: Dispatch<SetStateAction<string>>) =>
-  (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setter(e.target.value);
   };

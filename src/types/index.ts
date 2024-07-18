@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from 'react';
+
 export type Pathname = '/' | '/properties' | '/properties/add';
 
 export type Link = {
@@ -54,6 +56,8 @@ export type ContactInput = {
   label: string;
   type: string;
   placeholder: string;
+  value: string;
+  setter: Dispatch<SetStateAction<string>>;
 };
 
 export type RentType = 'nightly' | 'weekly' | 'monthly';

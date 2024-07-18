@@ -1,3 +1,5 @@
+'use client';
+
 import type { FC } from 'react';
 
 import type { Property } from '@/types';
@@ -20,7 +22,7 @@ const ContactSidebar: FC<Props> = ({ property }) => {
       <div className="rounded-lg bg-white p-6 shadow-md">
         <h3 className="mb-6 text-xl font-bold">Contact Property Manager</h3>
 
-        <ContactForm />
+        <ContactForm property={property} />
       </div>
     </aside>
   );
