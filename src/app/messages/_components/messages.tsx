@@ -2,7 +2,7 @@
 
 import type { FC } from 'react';
 
-import type { MessageT } from '@/types/schemas';
+import type { Message as MessageT } from '@/types';
 
 import { useMessages } from '@/hooks';
 
@@ -24,8 +24,8 @@ const Messages: FC = () => {
 
     return (
       <>
-        {messages.map((message) => (
-          <Message key={message._id} message={message} />
+        {messages.map((message, index) => (
+          <Message key={index} message={message} />
         ))}
       </>
     );

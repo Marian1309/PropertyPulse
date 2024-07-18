@@ -13,7 +13,12 @@ type Props = {
 };
 
 const Message: FC<Props> = ({ message }) => {
-  const { isRead, handleReadClick } = useMessage(message);
+  const { isRead, isDeleted, handleDeleteClick, handleReadClick } =
+    useMessage(message);
+
+  if (isDeleted) {
+    return null;
+  }
 
   return (
     <div className="relative rounded-md border border-gray-200 bg-white p-4 shadow-md">
@@ -25,14 +30,14 @@ const Message: FC<Props> = ({ message }) => {
 
       <h2 className="mb-4 text-xl">
         <span className="font-bold">Property Inquiry: </span>
-        {message.property.name}
+        {message.property?.name}
       </h2>
 
       <p className="text-gray-700">{message.body}</p>
 
       <ul className="mt-4">
         <li>
-          <strong>Name:</strong> {message.sender.userName}
+          <strong>Name:</strong> {message.sender?.userName}
         </li>
 
         <li>
@@ -57,7 +62,10 @@ const Message: FC<Props> = ({ message }) => {
 
       <ReadButton handleReadClick={handleReadClick} isRead={isRead} />
 
-      <button className="mt-4 rounded-md bg-red-500 px-3 py-1 text-white">
+      <button
+        className="mt-4 rounded-md bg-red-500 px-3 py-1 text-white"
+        onClick={handleDeleteClick}
+      >
         Delete
       </button>
     </div>
