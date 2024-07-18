@@ -1,11 +1,12 @@
-import type { ChangeEvent, FC } from 'react';
-import { useState } from 'react';
+import type { FC } from 'react';
 
 import { FaPaperPlane } from 'react-icons/fa';
 
 import type { Property } from '@/types';
 
 import { handleChange } from '@/lib/utils';
+
+import { useContactForm } from '@/hooks';
 
 import ContactInput from './contact-input';
 
@@ -14,58 +15,13 @@ type Props = {
 };
 
 const ContactForm: FC<Props> = ({ property }) => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-  const [wasSubmitted, setWasSubmitted] = useState<boolean>(false);
-
-  const CONTACT_INPUTS = [
-    {
-      id: 'name',
-      label: 'Name:',
-      type: 'text',
-      placeholder: 'Enter your name',
-      value: name,
-      setter: setName
-    },
-    {
-      id: 'email',
-      label: 'Email:',
-      type: 'email',
-      placeholder: 'Enter your email',
-      value: email,
-      setter: setEmail
-    },
-    {
-      id: 'phone',
-      label: 'Phone:',
-      type: 'text',
-      placeholder: 'Enter your phone number',
-      value: phone,
-      setter: setPhone
-    }
-  ];
-
-  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const data = {
-      name,
-      email,
-      phone,
-      message,
-      recipient: property.owner,
-      property: property._id
-    };
-
-    console.log(data);
-  };
+  const { wasSubmitted, handleSubmit, contactInputs, message, setMessage } =
+    useContactForm(property);
 
   const render = () => {
     if (wasSubmitted) {
       return (
-        <p className="mb-4 text-gray-500">
+        <p className="mb-4 text-green-500">
           Your message has been sent successfully
         </p>
       );
@@ -73,7 +29,7 @@ const ContactForm: FC<Props> = ({ property }) => {
 
     return (
       <form onSubmit={handleSubmit}>
-        {CONTACT_INPUTS.map((contact_input) => (
+        {contactInputs.map((contact_input) => (
           <ContactInput contactInput={contact_input} key={contact_input.id} />
         ))}
 
