@@ -9,3 +9,4 @@ export { default as useProfileDropdown } from './useProfileDropdown';
 export { default as useSearchResults } from './useSearchResults';
 export { default as useContactForm } from './useContactForm';
 export { default as useMessages } from './useMessages';
+export { default as useMessage } from './useMessage';

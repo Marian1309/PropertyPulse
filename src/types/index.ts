@@ -1,5 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react';
 
+import type { MessageT } from './schemas';
+
 export type Pathname = '/' | '/properties' | '/properties/add';
 
 export type Link = {
@@ -95,4 +97,13 @@ export type EditPropertyFields = {
   rates: Rates;
   seller_info: SellerInfo;
   [key: string]: any;
+};
+
+export type Message = MessageT & {
+  sender: {
+    userName: string;
+  };
+  userName: string;
+  title: string;
+  property: Property;
 };
