@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 
 import type { Message } from '@/types';
 
+import useGlobalContext from './use_GlobalContext';
+
 type Return = (message: Message) => {
   isRead: boolean;
   isDeleted: boolean;
@@ -15,6 +17,8 @@ const useReadButton: Return = (message: Message) => {
   const [isRead, setIsRead] = useState<boolean>(message.read);
   const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
+  const context = useGlobalContext();
+
   const handleDeleteClick = async () => {
     try {
       const res = await fetch(`/api/messages/${message._id}`, {
@@ -23,6 +27,7 @@ const useReadButton: Return = (message: Message) => {
 
       if (res.status === 200) {
         setIsDeleted(true);
+        context?.setUnreadCount((prevCount) => prevCount - 1);
         toast.success('Message Deleted');
       }
     } catch (err: unknown) {
@@ -40,6 +45,9 @@ const useReadButton: Return = (message: Message) => {
       if (res.status === 200) {
         const { read } = await res.json();
         setIsRead(read);
+        context?.setUnreadCount((prevCount) =>
+          read ? prevCount - 1 : prevCount + 1
+        );
 
         if (read) {
           toast.success('Marked as read');

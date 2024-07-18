@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 import { Footer, Navbar } from '@/components/layout';
 
-import { AuthProvider, ToastProvider } from '@/providers';
+import { AuthProvider, ContextProvider, ToastProvider } from '@/providers';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400'] });
 
@@ -29,15 +29,19 @@ type Props = {
 const RootLayout: FC<Props> = ({ children }) => {
   return (
     <AuthProvider>
-      <html lang="en">
-        <body className={cn(poppins.className, 'flex min-h-[100vh] flex-col')}>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+      <ContextProvider>
+        <html lang="en">
+          <body
+            className={cn(poppins.className, 'flex min-h-[100vh] flex-col')}
+          >
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
 
-          <ToastProvider />
-        </body>
-      </html>
+            <ToastProvider />
+          </body>
+        </html>
+      </ContextProvider>
     </AuthProvider>
   );
 };

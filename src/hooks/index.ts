@@ -10,3 +10,5 @@ export { default as useSearchResults } from './useSearchResults';
 export { default as useContactForm } from './useContactForm';
 export { default as useMessages } from './useMessages';
 export { default as useMessage } from './useMessage';
+export { default as useUnreadCount } from './useUnreadCount';
+export { default as useGlobalContext } from './use_GlobalContext';
