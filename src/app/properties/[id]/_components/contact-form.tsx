@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 
+import { useSession } from 'next-auth/react';
 import { FaPaperPlane } from 'react-icons/fa';
 
 import type { Property } from '@/types';
@@ -15,10 +16,16 @@ type Props = {
 };
 
 const ContactForm: FC<Props> = ({ property }) => {
+  const { data: session } = useSession();
+
   const { wasSubmitted, handleSubmit, contactInputs, message, setMessage } =
     useContactForm(property);
 
   const render = () => {
+    if (!session) {
+      return <p>You must be logged in to send a message.</p>;
+    }
+
     if (wasSubmitted) {
       return (
         <p className="mb-4 text-green-500">

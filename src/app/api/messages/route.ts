@@ -5,6 +5,30 @@ import connectDB from '@/lib/database';
 
 export const dynamic = 'force-dynamic';
 
+// GET /api/messages
+export const GET = async () => {
+  try {
+    await connectDB();
+
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser.userId) {
+      return new Response('User id is required', { status: 401 });
+    }
+
+    const { userId } = sessionUser;
+
+    const messages = await Message.find({ recipient: userId })
+      .populate('sender', 'userName')
+      .populate('property', 'name');
+
+    return new Response(JSON.stringify(messages), { status: 200 });
+  } catch (err: unknown) {
+    console.log(err);
+    return new Response('Something Went Wrong', { status: 500 });
+  }
+};
+
 // POST /api/messages
 export const POST = async (request: Request) => {
   try {
@@ -45,5 +69,6 @@ export const POST = async (request: Request) => {
     });
   } catch (err: unknown) {
     console.log(err);
+    return new Response('Something Went Wrong', { status: 500 });
   }
 };

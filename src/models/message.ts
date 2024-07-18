@@ -1,6 +1,6 @@
 import { Schema, model, models } from 'mongoose';
 
-const MessageSchema = new Schema(
+export const MessageSchema = new Schema(
   {
     sender: {
       type: Schema.Types.ObjectId,
