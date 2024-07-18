@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "next build",
-    "clean": "rm -rf .next",
+    "clean": "rm -rf .next && rm -rf node_modules",
     "dev": "next dev",
     "format": "prettier . -w",
     "lint": "eslint --cache --fix",
