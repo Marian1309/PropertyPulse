@@ -3,6 +3,8 @@ import type { FC, ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
+import 'photoswipe/dist/photoswipe.css';
+
 import '@/assets/styles/globals.scss';
 
 import { cn } from '@/lib/utils';
