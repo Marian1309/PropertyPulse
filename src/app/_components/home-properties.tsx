@@ -13,7 +13,7 @@ const HomeProperties = () => {
 
   return (
     <>
-      <section className="px-4 py-6 pb-0">
+      <section className="p-4 pb-0">
         <div className="container-xl m-auto lg:container">
           <h2 className="mb-8 text-center text-3xl font-bold text-blue-500">
             Recent Properties

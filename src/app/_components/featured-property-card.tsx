@@ -17,7 +17,7 @@ type Props = {
   property: Property;
 };
 
-const PropertyCard: FC<Props> = ({ property }) => {
+const FeaturedPropertyCard: FC<Props> = ({ property }) => {
   const getRateDisplay = () => {
     const { rates } = property;
 
@@ -31,43 +31,39 @@ const PropertyCard: FC<Props> = ({ property }) => {
   };
 
   return (
-    <div className="relative rounded-xl bg-white shadow-md">
+    <div className="relative flex flex-col rounded-xl bg-white shadow-md md:flex-row">
       <Image
         alt=""
-        className="h-auto w-full rounded-t-xl"
+        className="w-full rounded-t-xl object-cover md:w-2/5 md:rounded-l-xl md:rounded-tr-none"
         height={0}
         sizes="100vw"
         src={property.images[0]}
         width={0}
       />
 
-      <div className="p-4">
-        <div className="mb-6 text-left md:text-center lg:text-left">
-          <div className="text-gray-600">{property.type}</div>
-          <h3 className="flex min-h-[56px] items-center justify-center text-xl font-bold">
-            {property.name}
-          </h3>
-        </div>
+      <div className="p-6">
+        <h3 className="text-xl font-bold">{property.name}</h3>
 
-        <h3 className="absolute right-[10px] top-[10px] rounded-lg bg-white px-4 py-2 text-right font-bold text-blue-500 md:text-center lg:text-right">
+        <div className="mb-4 text-gray-600">{property.type}</div>
+
+        <h3 className="absolute left-[10px] top-[10px] rounded-lg bg-white px-4 py-2 text-right font-bold text-blue-500 md:text-center lg:text-right">
           ${getRateDisplay()}
         </h3>
 
         <div className="mb-4 flex justify-center gap-4 text-gray-500">
           <p>
-            <FaBed className="mr-2 inline" />
-            {property.beds}
+            <FaBed className="mr-2 inline-block" /> {property.beds}
             <span className="md:hidden lg:inline">Beds</span>
           </p>
 
           <p>
-            <FaBath className="mr-2 inline" /> {property.baths}
+            <FaBath className="mr-2 inline-block" /> {property.baths}
             <span className="md:hidden lg:inline">Baths</span>
           </p>
 
           <p>
-            <FaRulerCombined className="mr-2 inline" />
-            {property.square_feet}
+            <FaRulerCombined className="mr-2 inline-block" />
+            {property.square_feet}{' '}
             <span className="md:hidden lg:inline">sqft</span>
           </p>
         </div>
@@ -92,14 +88,14 @@ const PropertyCard: FC<Props> = ({ property }) => {
           )}
         </div>
 
-        <div className="mb-5 border border-gray-100"></div>
+        <div className="mb-5 border border-gray-200"></div>
 
         <div className="flex flex-col justify-between lg:flex-row">
-          <div className="mb-4 flex flex-1 gap-2 align-middle lg:mb-0">
+          <div className="mb-4 flex gap-2 align-middle lg:mb-0">
             <FaMapMarker className="text-orange-700" />
-
             <span className="text-orange-700">
-              {property.location.city} {property.location.state}
+              {' '}
+              {property.location.city} {property.location.state}{' '}
             </span>
           </div>
 
@@ -115,4 +111,4 @@ const PropertyCard: FC<Props> = ({ property }) => {
   );
 };
 
-export default PropertyCard;
+export default FeaturedPropertyCard;
