@@ -41,7 +41,7 @@ const SearchResultsPage: FC = () => {
 
           <h1 className="mb-4 text-2xl">Search Results</h1>
 
-          {render(properties, 'No search results found')}
+          {render(properties, loading, 'No search results found')}
         </div>
       </section>
     </>

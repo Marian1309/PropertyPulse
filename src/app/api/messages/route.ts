@@ -20,7 +20,7 @@ export const GET = async () => {
 
     const readMessages = await Message.find({ recipient: userId, read: true })
       .sort({ createdAt: -1 })
-      .populate('sender', 'userName')
+      .populate('sender', 'name')
       .populate('property', 'name');
 
     const unreadMessages = await Message.find({

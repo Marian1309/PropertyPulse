@@ -4,6 +4,7 @@ import type { ChangeEvent, FC } from 'react';
 
 import { useParams, useRouter } from 'next/navigation';
 
+import { useFormStatus } from 'react-dom';
 import { toast } from 'react-toastify';
 
 import useEditPropertyFields from '@/hooks/usuEditPropertyFields';
@@ -25,16 +26,18 @@ const EditPropertyForm: FC = () => {
   const { isMounted, fields, handleChange, loading, handleAmenitiesChange } =
     useEditPropertyFields(id);
 
+  const { pending } = useFormStatus();
+
   if (!isMounted) {
-    return null;
+    return <Spinner loading={!isMounted} />;
+  }
+
+  if (pending) {
+    return <Spinner loading={pending} />;
   }
 
   if (loading) {
-    return (
-      <div className="h-adaptive">
-        <Spinner loading={loading} />;
-      </div>
-    );
+    return <Spinner loading={loading} />;
   }
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
@@ -130,14 +133,12 @@ const EditPropertyForm: FC = () => {
         value={fields.seller_info.phone}
       />
 
-      <div>
-        <button
-          className="focus:shadow-outline w-full rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
-          type="submit"
-        >
-          Edit Property
-        </button>
-      </div>
+      <button
+        className="focus:shadow-outline w-full rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none"
+        type="submit"
+      >
+        Edit Property
+      </button>
     </form>
   );
 };

@@ -16,7 +16,6 @@ const MobileMenu: FC<Props> = ({ toggleIsMobileMenuOpen }) => {
         type="button"
       >
         <span className="absolute -inset-0.5"></span>
-        <span className="sr-only">Open main menu</span>
 
         <ICONS.mobileMenu />
       </button>

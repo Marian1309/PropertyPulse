@@ -38,6 +38,18 @@ export const POST = async (request: Request) => {
 
     const formData = await request.formData();
 
+    const rates = {
+      weekly: formData.get('rates.weekly'),
+      monthly: formData.get('rates.monthly'),
+      nightly: formData.get('rates.nightly')
+    };
+
+    if (!rates.monthly && !rates.nightly && !rates.weekly) {
+      return new Response('Write down at least one rate price', {
+        status: 401
+      });
+    }
+
     const amenities = formData.getAll('amenities');
     const images = formData.getAll('images') as any[];
 
@@ -57,11 +69,7 @@ export const POST = async (request: Request) => {
       baths: formData.get('baths'),
       square_feet: formData.get('square_feet'),
       amenities,
-      rates: {
-        weekly: formData.get('rates.weekly'),
-        monthly: formData.get('rates.monthly'),
-        nightly: formData.get('rates.nightly')
-      },
+      rates,
       seller_info: {
         name: formData.get('seller_info.name'),
         email: formData.get('seller_info.email'),

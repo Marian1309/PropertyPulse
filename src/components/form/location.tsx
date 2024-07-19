@@ -23,6 +23,7 @@ const AddPropertyLocation: FC<Props> = ({ location, handleChange }) => {
           name={input.name}
           onChange={handleChange}
           placeholder={input.placeholder}
+          required
           type="text"
           value={location[input.name.split('.')[1]] || ''}
         />

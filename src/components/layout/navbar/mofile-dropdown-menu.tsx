@@ -11,12 +11,21 @@ import LinkList from './link-list';
 type Props = {
   pathname: Pathname;
   isLoggedIn: Session | null;
+  toggleIsMobileOpen: () => void;
 };
 
-const MobileDropdownMenu: FC<Props> = ({ pathname, isLoggedIn }) => {
+const MobileDropdownMenu: FC<Props> = ({
+  pathname,
+  isLoggedIn,
+  toggleIsMobileOpen
+}) => {
   return (
     <div className="space-y-1 px-2 pb-3 pt-2">
-      <LinkList isLoggedIn={isLoggedIn} pathname={pathname} />
+      <LinkList
+        isLoggedIn={isLoggedIn}
+        pathname={pathname}
+        toggleIsMobileOpen={toggleIsMobileOpen}
+      />
 
       {!isLoggedIn && <GoogleButton />}
     </div>

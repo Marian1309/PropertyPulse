@@ -31,7 +31,7 @@ const PropertyCard: FC<Props> = ({ property }) => {
   };
 
   return (
-    <div className="relative rounded-xl shadow-md">
+    <div className="relative rounded-xl bg-white shadow-md">
       <Image
         alt=""
         className="h-auto w-full rounded-t-xl"
@@ -92,7 +92,7 @@ const PropertyCard: FC<Props> = ({ property }) => {
 
         <div className="mb-5 border border-gray-100"></div>
 
-        <div className="mb-4 flex flex-col justify-between lg:flex-row">
+        <div className="flex flex-col justify-between lg:flex-row">
           <div className="mb-4 flex gap-2 align-middle lg:mb-0">
             <FaMapMarker className="text-orange-700" />
 

@@ -22,7 +22,7 @@ const SavedpropertiesPage: FC = () => {
       </div>
 
       <div className="container-xl m-auto px-4 py-6 lg:container">
-        {render(properties, 'No saved properties')}
+        {render(properties, loading, 'No saved properties')}
       </div>
     </section>
   );

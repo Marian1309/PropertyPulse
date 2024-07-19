@@ -37,7 +37,7 @@ const Message: FC<Props> = ({ message }) => {
 
       <ul className="mt-4">
         <li>
-          <strong>Name:</strong> {message.sender?.userName}
+          <strong>Name:</strong> {message.name}
         </li>
 
         <li>

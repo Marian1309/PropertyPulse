@@ -4,6 +4,8 @@ import type { Rates } from '@/types';
 
 import { ADD_PROPERTY_RATES } from '@/constants';
 
+import { handleOnBlurReset } from '@/lib/utils';
+
 type Props = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -25,7 +27,9 @@ const AddPropertyRates: FC<Props> = ({ handleChange, rates }) => {
 
             <input
               className="w-full rounded border px-3 py-2"
+              min={0}
               name={rate.name}
+              onBlur={handleOnBlurReset}
               onChange={handleChange}
               type="number"
               value={rates[rate.label.toLowerCase()] || ''}

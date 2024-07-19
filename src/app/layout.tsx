@@ -35,7 +35,7 @@ const RootLayout: FC<Props> = ({ children }) => {
             className={cn(poppins.className, 'flex min-h-[100vh] flex-col')}
           >
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 bg-blue-50">{children}</main>
             <Footer />
 
             <ToastProvider />

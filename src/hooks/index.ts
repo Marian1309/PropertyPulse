@@ -11,4 +11,6 @@ export { default as useContactForm } from './useContactForm';
 export { default as useMessages } from './useMessages';
 export { default as useMessage } from './useMessage';
 export { default as useUnreadCount } from './useUnreadCount';
+export { default as useProperties } from './useProperties';
+
 export { default as useGlobalContext } from './use_GlobalContext';

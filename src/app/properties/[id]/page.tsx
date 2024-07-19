@@ -55,7 +55,7 @@ const PropertyPage: FC = () => {
           <PropertyHeaderImage image={property.images[0]} />
 
           <section>
-            <div className="container m-auto px-6 py-6">
+            <div className="container mx-auto px-6 py-6">
               <Link
                 className="flex items-center justify-center gap-x-2 text-blue-500 hover:text-blue-600"
                 href="/properties"
@@ -66,8 +66,8 @@ const PropertyPage: FC = () => {
           </section>
 
           <section className="bg-blue-50">
-            <div className="container m-auto px-6 py-6">
-              <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-70/30">
+            <div className="container m-auto px-6 py-1">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-70/30">
                 <PropertyInfo property={property} />
 
                 <ContactSidebar property={property} />

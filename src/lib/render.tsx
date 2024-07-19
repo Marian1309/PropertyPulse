@@ -1,11 +1,16 @@
 import type { Property } from '@/types';
 
-import { PropertyCard } from '@/components/ui';
+import { PropertyCard, Spinner } from '@/components/ui';
 
 const render = (
   properties: Property[],
+  loading: boolean,
   title: string = 'No properties found'
 ) => {
+  if (loading) {
+    return <Spinner loading={loading} />;
+  }
+
   if (properties.length === 0) {
     return <p>{title}</p>;
   }

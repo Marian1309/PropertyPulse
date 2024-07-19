@@ -20,6 +20,12 @@ const useReadButton: Return = (message: Message) => {
   const context = useGlobalContext();
 
   const handleDeleteClick = async () => {
+    const confirmed = window.confirm('Are you sure to delete this message?');
+
+    if (!confirmed) {
+      return;
+    }
+
     try {
       const res = await fetch(`/api/messages/${message._id}`, {
         method: 'DELETE'

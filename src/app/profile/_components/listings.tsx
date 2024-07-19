@@ -23,16 +23,18 @@ const ProfileListings: FC<Props> = ({ properties, loading }) => {
 
     return (
       <>
-        {properties.map((property) => (
-          <ProfileListing key={property._id} property={property} />
-        ))}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {properties.map((property) => (
+            <ProfileListing key={property._id} property={property} />
+          ))}
+        </div>
       </>
     );
   };
 
   return (
     <div className="md:w-3/4 md:pl-4">
-      <h2 className="mb-4 text-xl font-semibold">Your Listings</h2>
+      <h2 className="my-4 text-xl font-semibold">Your Listings</h2>
 
       {render()}
     </div>

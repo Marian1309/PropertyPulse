@@ -1,3 +1,5 @@
+'use client';
+
 import type { FC } from 'react';
 
 import Link from 'next/link';
@@ -13,9 +15,10 @@ import { cn } from '@/lib/utils';
 type Props = {
   pathname: Pathname;
   isLoggedIn: Session | null;
+  toggleIsMobileOpen: () => void;
 };
 
-const LinkList: FC<Props> = ({ pathname, isLoggedIn }) => {
+const LinkList: FC<Props> = ({ pathname, isLoggedIn, toggleIsMobileOpen }) => {
   return (
     <>
       {LINKS.filter((link) => {
@@ -32,6 +35,7 @@ const LinkList: FC<Props> = ({ pathname, isLoggedIn }) => {
           )}
           href={link.pathname}
           key={link.id}
+          onClick={toggleIsMobileOpen}
         >
           {link.label}
         </Link>

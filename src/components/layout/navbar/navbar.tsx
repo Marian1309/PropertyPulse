@@ -63,6 +63,7 @@ const Navbar: FC = () => {
         <MobileDropdownMenu
           isLoggedIn={session}
           pathname={pathname as Pathname}
+          toggleIsMobileOpen={mobile.toggle}
         />
       )}
     </nav>

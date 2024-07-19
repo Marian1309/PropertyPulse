@@ -18,8 +18,8 @@ const ProfilePage: FC = () => {
   const { profile, properties, loading } = useUserProperties(session);
 
   return (
-    <section className="container flex min-h-full items-center justify-center bg-blue-50">
-      <div className="m-4 mb-4 w-full rounded-md border bg-white px-6 py-8 shadow-md md:m-0">
+    <section className="container">
+      <div className="my-8 w-full rounded-md border bg-white px-6 py-8 shadow-md">
         <h1 className="text-3xl font-bold">Your Profile</h1>
 
         <div className="flex flex-col justify-around md:flex-row">

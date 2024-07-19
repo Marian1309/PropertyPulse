@@ -17,6 +17,7 @@ const AddPropertyImages: FC<Props> = ({ handleImageChange }) => {
         multiple
         name="images"
         onChange={handleImageChange}
+        required
         type="file"
       />
     </div>

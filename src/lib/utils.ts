@@ -1,4 +1,4 @@
-import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import type { ChangeEvent, Dispatch, FocusEvent, SetStateAction } from 'react';
 
 import type { ClassValue } from 'clsx';
 import { clsx } from 'clsx';
@@ -15,3 +15,9 @@ export const handleChange =
   ) => {
     setter(e.target.value);
   };
+
+export const handleOnBlurReset = (e: FocusEvent<HTMLInputElement, Element>) => {
+  if (e.target.value === '0') {
+    e.target.value = '';
+  }
+};

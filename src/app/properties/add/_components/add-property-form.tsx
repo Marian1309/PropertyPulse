@@ -2,6 +2,8 @@
 
 import type { FC } from 'react';
 
+import { useFormStatus } from 'react-dom';
+
 import { useAddPropertyFields } from '@/hooks';
 
 import {
@@ -13,6 +15,7 @@ import {
   PropertyRates,
   PropertyType
 } from '@/components/form';
+import { Spinner } from '@/components/ui';
 
 const AddPropertyForm: FC = () => {
   const {
@@ -23,8 +26,14 @@ const AddPropertyForm: FC = () => {
     handleImageChange
   } = useAddPropertyFields();
 
+  const { pending } = useFormStatus();
+
+  if (pending) {
+    return <Spinner loading={pending} />;
+  }
+
   if (!isMounted) {
-    return null;
+    return <Spinner loading={!isMounted} />;
   }
 
   return (

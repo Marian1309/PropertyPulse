@@ -4,6 +4,8 @@ import type { AddPropertyFields, EditPropertyFields } from '@/types';
 
 import { ADD_PROPERTY_FORM_FUNTITURES } from '@/constants';
 
+import { handleOnBlurReset } from '@/lib/utils';
+
 type Props = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -22,7 +24,9 @@ const AddPropertyFurniture: FC<Props> = ({ handleChange, fields }) => {
 
           <input
             className="w-full rounded border px-3 py-2"
+            min={0}
             name={input.name}
+            onBlur={handleOnBlurReset}
             onChange={handleChange}
             required
             type="number"
