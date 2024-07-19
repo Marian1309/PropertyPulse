@@ -5,6 +5,9 @@ import type { Property } from '@/types';
 const useProperties = () => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(3);
+  const [totalItems, setTotalItems] = useState<number>(0);
 
   properties.sort((a, b) => {
     return Number(new Date(b.createdAt)) - Number(new Date(a.createdAt));
@@ -13,14 +16,18 @@ const useProperties = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const res = await fetch('/api/properties', { cache: 'no-cache' });
+        const res = await fetch(
+          `/api/properties?page=${page}&pageSize=${pageSize}`,
+          { cache: 'no-cache' }
+        );
 
         if (!res.ok) {
           throw new Error('Failed to fetch data');
         }
 
-        const data = await res.json();
-        setProperties(data);
+        const { total, properties } = await res.json();
+        setProperties(properties);
+        setTotalItems(total);
       } catch (err: unknown) {
         console.log(err);
         return [];
@@ -30,11 +37,15 @@ const useProperties = () => {
     };
 
     fetchProperties();
-  }, []);
+  }, [page, pageSize]);
 
   return {
     properties,
-    loading
+    loading,
+    totalItems,
+    page,
+    pageSize,
+    setPage
   };
 };
 

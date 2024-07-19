@@ -1,3 +1,5 @@
+import type { NextRequest } from 'next/server';
+
 import env from '@/env';
 
 import { cloudinary } from '@/config';
@@ -8,13 +10,24 @@ import { getSessionUser } from '@/lib/auth';
 import connectDB from '@/lib/database';
 
 // GET /api/properties
-export const GET = async () => {
+export const GET = async (request: NextRequest) => {
   try {
     await connectDB();
 
-    const properties = await Property.find();
+    const page = Number(request.nextUrl.searchParams.get('page')) || 1;
+    const pageSize = Number(request.nextUrl.searchParams.get('pageSize')) || 3;
 
-    return new Response(JSON.stringify(properties), {
+    const skip = (page - 1) * pageSize;
+
+    const total = await Property.countDocuments({});
+    const properties = await Property.find({}).skip(skip).limit(pageSize);
+
+    const result = {
+      total,
+      properties
+    };
+
+    return new Response(JSON.stringify(result), {
       status: 200
     });
   } catch (err: unknown) {
@@ -24,7 +37,7 @@ export const GET = async () => {
 };
 
 // POST /api/properties
-export const POST = async (request: Request) => {
+export const POST = async (request: NextRequest) => {
   try {
     await connectDB();
 
