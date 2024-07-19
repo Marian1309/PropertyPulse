@@ -1,10 +1,8 @@
-import type { FC } from 'react';
-
 import { fetchProperties } from '@/lib/requests';
 
 import FeaturedPropertyCard from './featured-property-card';
 
-const FeaturedProperties: FC = async () => {
+const FeaturedProperties = async () => {
   const properties = await fetchProperties({
     showFeatured: true
   });
