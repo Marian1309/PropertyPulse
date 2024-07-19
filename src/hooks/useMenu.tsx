@@ -5,6 +5,7 @@ type Return = {
   mobile: {
     isOpen: boolean;
     toggle: () => void;
+    setIsMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
   };
   profile: {
     isOpen: boolean;
@@ -22,7 +23,11 @@ const useMenu = (): Return => {
   const toggleIsProfileMenuOpen = () => setIsProfileMenuOpen((prev) => !prev);
 
   return {
-    mobile: { isOpen: isMobileMenuOpen, toggle: toggleIsMobileMenuOpen },
+    mobile: {
+      isOpen: isMobileMenuOpen,
+      toggle: toggleIsMobileMenuOpen,
+      setIsMobileMenuOpen
+    },
     profile: {
       isOpen: isProfileMenuOpen,
       toggle: toggleIsProfileMenuOpen,

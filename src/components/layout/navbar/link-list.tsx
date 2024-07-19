@@ -1,6 +1,6 @@
 'use client';
 
-import type { FC } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import Link from 'next/link';
 
@@ -15,10 +15,10 @@ import { cn } from '@/lib/utils';
 type Props = {
   pathname: Pathname;
   isLoggedIn: Session | null;
-  toggleIsMobileOpen: () => void;
+  setIsMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const LinkList: FC<Props> = ({ pathname, isLoggedIn, toggleIsMobileOpen }) => {
+const LinkList: FC<Props> = ({ pathname, isLoggedIn, setIsMobileMenuOpen }) => {
   return (
     <>
       {LINKS.filter((link) => {
@@ -35,7 +35,7 @@ const LinkList: FC<Props> = ({ pathname, isLoggedIn, toggleIsMobileOpen }) => {
           )}
           href={link.pathname}
           key={link.id}
-          onClick={toggleIsMobileOpen}
+          onClick={() => setIsMobileMenuOpen(false)}
         >
           {link.label}
         </Link>

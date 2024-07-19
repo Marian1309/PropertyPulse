@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import type { Session } from 'next-auth';
 
@@ -11,20 +11,20 @@ import LinkList from './link-list';
 type Props = {
   pathname: Pathname;
   isLoggedIn: Session | null;
-  toggleIsMobileOpen: () => void;
+  setIsMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 const MobileDropdownMenu: FC<Props> = ({
   pathname,
   isLoggedIn,
-  toggleIsMobileOpen
+  setIsMobileMenuOpen
 }) => {
   return (
     <div className="space-y-1 px-2 pb-3 pt-2">
       <LinkList
         isLoggedIn={isLoggedIn}
         pathname={pathname}
-        toggleIsMobileOpen={toggleIsMobileOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
 
       {!isLoggedIn && <GoogleButton />}

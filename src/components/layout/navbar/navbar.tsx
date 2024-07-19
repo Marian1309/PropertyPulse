@@ -34,7 +34,11 @@ const Navbar: FC = () => {
         <div className="relative flex h-20 items-center justify-between">
           <MobileMenu toggleIsMobileMenuOpen={mobile.toggle} />
 
-          <MainMenu isLoggedIn={session} pathname={pathname as Pathname} />
+          <MainMenu
+            isLoggedIn={session}
+            pathname={pathname as Pathname}
+            setIsMobileMenuOpen={mobile.setIsMobileMenuOpen}
+          />
 
           {!session &&
             providers &&
@@ -63,7 +67,7 @@ const Navbar: FC = () => {
         <MobileDropdownMenu
           isLoggedIn={session}
           pathname={pathname as Pathname}
-          toggleIsMobileOpen={mobile.toggle}
+          setIsMobileMenuOpen={mobile.setIsMobileMenuOpen}
         />
       )}
     </nav>

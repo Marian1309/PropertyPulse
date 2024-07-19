@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,9 +14,10 @@ import LinkList from './link-list';
 type Props = {
   pathname: Pathname;
   isLoggedIn: Session | null;
+  setIsMobileMenuOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const MainMenu: FC<Props> = ({ pathname, isLoggedIn }) => {
+const MainMenu: FC<Props> = ({ pathname, isLoggedIn, setIsMobileMenuOpen }) => {
   return (
     <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
       <Link className="flex flex-shrink-0 items-center" href="/">
@@ -36,7 +37,11 @@ const MainMenu: FC<Props> = ({ pathname, isLoggedIn }) => {
 
       <div className="hidden md:ml-6 md:block">
         <div className="flex space-x-2">
-          <LinkList isLoggedIn={isLoggedIn} pathname={pathname} />
+          <LinkList
+            isLoggedIn={isLoggedIn}
+            pathname={pathname}
+            setIsMobileMenuOpen={setIsMobileMenuOpen}
+          />
         </div>
       </div>
     </div>
