@@ -12,8 +12,8 @@ const RootPage: FC = () => {
     <>
       <Hero />
       <InfoBoxes />
-      <FeaturedProperties />
       {/* @ts-ignore */}
+      <FeaturedProperties />
       <HomeProperties />
     </>
   );
