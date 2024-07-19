@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -31,7 +31,7 @@ type Props = {
   children: ReactNode;
 };
 
-const RootLayout: FC<Props> = async ({ children }) => {
+const RootLayout = async ({ children }: Props) => {
   const session = await getServerSession(authOptions);
 
   return (
