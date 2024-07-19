@@ -3,9 +3,12 @@ import type { FC, ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
+import { getServerSession } from 'next-auth';
 import 'photoswipe/dist/photoswipe.css';
 
 import '@/assets/styles/globals.scss';
+
+import { authOptions } from '@/config';
 
 import { cn } from '@/lib/utils';
 
@@ -28,7 +31,9 @@ type Props = {
   children: ReactNode;
 };
 
-const RootLayout: FC<Props> = ({ children }) => {
+const RootLayout: FC<Props> = async ({ children }) => {
+  const session = await getServerSession(authOptions);
+
   return (
     <AuthProvider>
       <ContextProvider>
@@ -36,7 +41,7 @@ const RootLayout: FC<Props> = ({ children }) => {
           <body
             className={cn(poppins.className, 'flex min-h-[100vh] flex-col')}
           >
-            <Navbar />
+            <Navbar session={session} />
             <main className="flex-1 bg-blue-50">{children}</main>
             <Footer />
 

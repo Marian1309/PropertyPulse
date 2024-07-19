@@ -4,8 +4,8 @@ import type { FC } from 'react';
 
 import { usePathname } from 'next/navigation';
 
+import type { Session } from 'next-auth';
 import type { ClientSafeProvider } from 'next-auth/react';
-import { useSession } from 'next-auth/react';
 
 import type { Pathname } from '@/types';
 
@@ -19,8 +19,11 @@ import MobileMenu from './mobile-menu';
 import MobileDropdownMenu from './mofile-dropdown-menu';
 import Profile from './profile';
 
-const Navbar: FC = () => {
-  const { data: session } = useSession();
+type Props = {
+  session: Session | null;
+};
+
+const Navbar: FC<Props> = ({ session }) => {
   const pathname = usePathname();
 
   const providers = useProviders();
