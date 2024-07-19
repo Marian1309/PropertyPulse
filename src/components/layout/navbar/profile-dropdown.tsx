@@ -3,6 +3,7 @@
 import type { Dispatch, FC, SetStateAction } from 'react';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { signOut } from 'next-auth/react';
 
@@ -13,10 +14,12 @@ type Props = {
 };
 
 const ProfileDropdown: FC<Props> = ({ setIsProfileMenuOpen }) => {
+  const router = useRouter();
   const dropdownRef = useProfileDropdown(setIsProfileMenuOpen);
 
   const handleSignOut = () => {
     setIsProfileMenuOpen(false);
+    router.push('/');
     signOut();
   };
 
